@@ -1,16 +1,24 @@
 
 // -- Global Data -- //
+// Defaults
 let gameState = "mainMenu";
+let gameStarted = false;
 let buttons = [];
 let cameraY = 0;
 let targetY = 0;
+let Spacecraft;
+let Enemies = []; 
 
-
-// Asset Data //
+// Asset Data 
 let mainMenuBImg;
 let startB, startBG;  
 let instructionB, instructionBG; 
 let exitB, exitBG; 
+let SpacecraftImg;
+let EnemyImg;
+
+// Changables
+let transitionSpeed = 0.01;
 
 
 
@@ -23,22 +31,24 @@ function preload(){
   instructionBG = loadImage("assets/Instruct_Button_Glow.png");
   exitB = loadImage("assets/Exit_Button.png");
   exitBG = loadImage("assets/Exit_Button_Glow.png");
+  SpacecraftImg = loadImage("assets/Spacecraft.png");
+  EnemyImg = loadImage("Enemy.png");
 }
 
 
 
 // -- Setup & Fucntions -- //
 function setup() {
-  createCanvas(640, 360);
-  noSmooth();
+  createCanvas(1280, 720);
+  noSmooth(); 
 
 // Button Positions //
-let btnSpacing = width / 4; // Distance between each button 
-let y = height - 100; // Buttons position on the y 
+let x = width / 4; // Overall buttons position on the x axis
+let y = height - 95; // Overall buttons position on the y axis
 mainMenuButtons = [
-  new Imagebutton(btnSpacing * 1, y, startB, startBG, "start"),
-  new Imagebutton(btnSpacing * 2, y, instructionB, instructionBG, "instruct"),
-  new Imagebutton(btnSpacing * 3, y, exitB, exitBG, "exit") ];
+  new Imagebutton(x, y, startB, startBG, "start"),
+  new Imagebutton(x * 2, y, instructionB, instructionBG, "instruct"),
+  new Imagebutton(x * 3, y, exitB, exitBG, "exit") ];
 }
 
 // Game Background //
@@ -58,15 +68,17 @@ drawGameBackground();
   }
 }
 
-// Transition //
+// Screen Transition //
 function transitionScreen() {
   drawGameBackground();
-  cameraY = lerp(cameraY, targetY, 0.05);
+  cameraY = lerp(cameraY, targetY, transitionSpeed);
 
   if (abs(cameraY - targetY) < 1) {
     gameState = "game";
   }
 }
+
+//
 
 
 
@@ -119,8 +131,8 @@ class Imagebutton {
     this.action = action;
     this.ishovered = false;
     // Button Image Sizing -- for best result need to be same number of image pixels
-    this.w = 150; 
-    this.h = 60; 
+    this.w = 150; //~~~~~~~~~~~CHANGE WHEN ASSETS ARE DONE~~~~~~~~~~~~~//
+    this.h = 60; //~~~~~~~~~~~CHANGE WHEN ASSETS ARE DONE~~~~~~~~~~~~~//
   }
 
 // Mouse Hovering Logic //
