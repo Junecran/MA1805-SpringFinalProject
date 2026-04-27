@@ -6,9 +6,8 @@
 
 Small description here
 
-**Theme & Design Choices**
-
-- basic explaination why and what was done
+**Theme & Design Choices**  "basic explaination why and what was done"
+- Having the camera scroll down instead of up - looking up feels natural / feeling of hope - we are going for the opposite 
 
 - 
 
@@ -20,21 +19,18 @@ Small description here
 -
 
 
+## References and Study Notes
+- The auto padding & window sizing - https://www.w3schools.com/css/css3_flexbox.asp
 
-## References 
-any references use go here
 
-
-## Study Notes
-any Longer Note than simple comments from codes use go here 
 
 
 # Group Members & Responsibilities:
 
 **Eleanor Craner** 
--
--
--
+- Pixel Art 
+- Menus 
+- 
 
 **Simon Bahrani** 
 -
