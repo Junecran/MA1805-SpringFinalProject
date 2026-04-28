@@ -9,7 +9,7 @@ Small description here
 **Theme & Design Choices**  "basic explaination why and what was done"
 - Having the camera scroll down instead of up - looking up feels natural / feeling of hope - we are going for the opposite 
 
-- 
+- player having no collison cause the enemies are mental demons and wont hurt us physically but will damage and hurt are mindset(the spaceship)
 
 - 
 
