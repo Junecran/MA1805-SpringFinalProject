@@ -2,7 +2,7 @@
 **Eleanor Craner & Simon Bahrani** - [Host GitHub Link](https://github.com/Junecran/MA1805-SpringFinalProject) - [Website Link](https://junecran.github.io/MA1805-SpringFinalProject/)
 
 
-# [NameHere](NameHere/index.html) - Link to 'Type Here'
+# [NameHere](http://127.0.0.1:5500/NameHere/index.html) - Link to 'Type Here'
 
 Small description here
 
