@@ -151,8 +151,10 @@ function menuTransitions() {
 
   cameraY = lerp(cameraY, targetY, menuTransitionSpeed);
   if (abs(cameraY - targetY) < 1) {
-    if (targetY === gameYPos) {
-      gameState = "game";
+  if (targetY === gameYPos) {
+  gameState = "game";
+  gameFade = 255;     // start fully black
+  isFadingIn = true;  // enable fade-in
     } else if (targetY === instructYPos) {
       gameState = "instructions";
     } else {
@@ -184,6 +186,7 @@ image(selectedMainMenuImg, 0, 0, 1280, 720);
     pauseMenuState();
     return; 
   }
+
   // Spaceship loop
   let hb = spaceship.getHitbox();
   spaceship.update();
