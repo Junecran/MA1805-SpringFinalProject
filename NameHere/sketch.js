@@ -1,7 +1,7 @@
 
 // -- Global Data -- //
 // Default Game State 
-let gameState = "mainMenu"; // Can change for debug (mainMenu,game,transition,instructions)
+let gameState = "game"; // Can change for debug (mainMenu,game,transition,instructions)
 let gameStarted = false;
 let debugMode = true;
 // Inputs 
@@ -153,6 +153,7 @@ function updateGame() {
   debugDraw(spaceship);
 
   // Player loop
+  let playerHb = player.playerHitbox();
   player.update(hb.x, hb.y);
   player.show(hb.x, hb.y);
 
@@ -165,11 +166,11 @@ function updateGame() {
     enemies[i].update(spaceship);
     enemies[i].show();
 
-  // Enemy collision detection
-     if ( enemies[i].x > hb.x - hb.size / 2 && 
-      enemies[i].x < hb.x + hb.size / 2 &&
-      enemies[i].y > hb.y - hb.size / 2 &&
-      enemies[i].y < hb.y + hb.size / 2 ) 
+  // Enemy collision detection /// 
+     if ( enemies[i].x > playerHb.x - playerhb.size / 2 && 
+      enemies[i].x < playerHb.x + playerHb.size / 2 &&
+      enemies[i].y > playerHb.y - playerHb.size / 2 &&
+      enemies[i].y < playerHb.y + playerHb.size / 2 ) 
     {
       enemies.splice(i, 1); // Remove enemy on collision
     }
@@ -205,6 +206,7 @@ function debugDraw(obj) {
     obj.debug();
   }
 }
+
 
 
 // -- Inputs -- //
@@ -294,7 +296,6 @@ class playerSpaceship {
     image(spaceshipImg, this.x, this.y, 80, 80);
 }
 
-// Spaceship hitbox 
   getHitbox() { 
     return {
       x: this.x, 
@@ -305,11 +306,11 @@ class playerSpaceship {
 
 // Spaceship debug
 debug() { 
-    let hb = this.getHitbox();
-    noFill();
-    stroke(255, 0, 0);
-    rectMode(CENTER);
-    rect(hb.x, hb.y, hb.size, hb.size);
+   let hb = this.getHitbox();
+   noFill();
+   stroke(255, 0, 0);
+   rectMode(CENTER);
+   rect(hb.x, hb.y, hb.size, hb.size);
   }
 }
 
@@ -337,16 +338,8 @@ class tetheredPlayer {
       this.x = anchorX + cos(angle) * this.maxDistance;
       this.y = anchorY + sin(angle) * this.maxDistance;
     }
-     getHitbox() { 
-    return {
-      x: this.x, 
-      y: this.y,
-      size: spaceshipHitBoxSize
-    };
-  _}
-  }
+}
 
-  LARGE PENIS
 // Rope Tethered Physics //
   show(anchorX, anchorY) {
     let segments = 80; // Rope allowance
@@ -392,8 +385,17 @@ class tetheredPlayer {
   imageMode(CENTER);
   image(playerImg, this.x, this.y, 50, 50);
 
+ 
+   playerHitbox() 
+    return {
+      x: this.x, 
+      y: this.y,
+      size: spaceshipHitBoxSize
+    };
   }
+ 
 }
+
 
 
 // - Enemy - //
