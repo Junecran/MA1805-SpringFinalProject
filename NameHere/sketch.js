@@ -36,6 +36,7 @@ let looseRopeAmount = 1;
 let ropeWiggleAmount = 5;
 // Assets 
 let mainMenuImg;
+let selectedMainMenuImg;
 let pauseMenuImg;
 let startBG;  
 let instructionBG; 
@@ -55,6 +56,7 @@ let playerImg;
 function preload(){
 // Backgrounds  
  mainMenuImg = loadImage("assets/Main_Menu.png");
+ selectedMainMenuImg = loadImage("assets/Main_Menu_Selection.png");
  pauseMenuImg = loadImage("assets/Pause_Menu.png");
 // Buttons 
  startBG = loadImage("assets/Start_Button_Glow.png");
@@ -174,7 +176,9 @@ function startGame() {
 }
 
 function updateGame() {
-  background(0); //~~REPLACE WITH SELECTION OF BACKGROUND~~////~~~~~~~~~~~CHANGE WHEN ASSETS ARE DONE~~~~~~~~~~~~~//
+background(0);
+imageMode(CORNER);
+image(selectedMainMenuImg, 0, 0, 1280, 720);
 
   if (isPaused) {
     pauseMenuState();
@@ -263,7 +267,7 @@ if (gameState === "game" && isPaused) {
   gameState = "transition";   
   targetY = menuYPos;
  } 
-   
+
  if (pauseNoButton.ishovered) {
   isPaused = false;
   }
