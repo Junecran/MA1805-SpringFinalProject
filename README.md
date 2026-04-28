@@ -25,14 +25,18 @@ Small description here
 
 
 
+
+
 # Group Members & Responsibilities:
 
 **Eleanor Craner** 
 - Pixel Art 
-- Menus 
+- Menus & Transitions
 - 
 
 **Simon Bahrani** 
 -
 -
 -
+
+
