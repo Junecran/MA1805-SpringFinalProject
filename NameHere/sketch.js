@@ -153,9 +153,10 @@ function updateGame() {
   debugDraw(spaceship);
 
   // Player loop
-  let playerHb = player.playerHitbox();
+  let playerHb = player.playerGetHitbox();
   player.update(hb.x, hb.y);
   player.show(hb.x, hb.y);
+  debugDraw(player);
 
   // Enemy spawn loop
   if (frameCount - lastSpawnFrame > enemySpawnInterval) {
@@ -167,7 +168,7 @@ function updateGame() {
     enemies[i].show();
 
   // Enemy collision detection /// 
-     if ( enemies[i].x > playerHb.x - playerhb.size / 2 && 
+     if ( enemies[i].x > playerHb.x - playerHb.size / 2 && 
       enemies[i].x < playerHb.x + playerHb.size / 2 &&
       enemies[i].y > playerHb.y - playerHb.size / 2 &&
       enemies[i].y < playerHb.y + playerHb.size / 2 ) 
@@ -322,6 +323,22 @@ class tetheredPlayer {
     this.lerpAmount = ropeSmoothness; 
   }
 
+  playerGetHitbox() { 
+    return {
+      x: this.x, 
+      y: this.y,
+      size: spaceshipHitBoxSize
+    };
+  }
+
+  debug() { 
+   let playerHb = this.playerGetHitbox();
+   noFill();
+   stroke(255, 0, 0);
+   rectMode(CENTER);
+   rect(playerHb.x, playerHb.y, playerHb.size, playerHb.size);
+  }
+
   update(anchorX, anchorY) {
     // Follow mouse
     let targetX = mouseX;
@@ -385,17 +402,8 @@ class tetheredPlayer {
   imageMode(CENTER);
   image(playerImg, this.x, this.y, 50, 50);
 
- 
-   playerHitbox() 
-    return {
-      x: this.x, 
-      y: this.y,
-      size: spaceshipHitBoxSize
-    };
+   }
   }
- 
-}
-
 
 
 // - Enemy - //
