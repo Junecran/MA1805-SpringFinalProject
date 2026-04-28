@@ -337,7 +337,13 @@ class tetheredPlayer {
       this.x = anchorX + cos(angle) * this.maxDistance;
       this.y = anchorY + sin(angle) * this.maxDistance;
     }
-    
+     getHitbox() { 
+    return {
+      x: this.x, 
+      y: this.y,
+      size: spaceshipHitBoxSize
+    };
+  _}
   }
 
 // Rope Tethered Physics //
