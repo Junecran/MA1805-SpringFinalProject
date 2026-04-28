@@ -1,7 +1,7 @@
 
 // -- Global Data -- //
 // Default Game State 
-let gameState = "game"; // Can change for debug (mainMenu,game,transition,instructions)
+let gameState = "mainMenu"; // Can change for debug (mainMenu,game,transition,instructions)
 let gameStarted = false;
 let debugMode = true;
 // Inputs 
@@ -13,10 +13,14 @@ let instructYPos;
 let gameYPos;
 let mainMenuButtons = [];
 let backButton;
+let isPaused = false;
+let pauseYesButton;
+let pauseNoButton;
+let pausebuttonHeight = 120;
+let pausebuttonWidth = 60;
 // Enemies 
 let enemies = [];
 let enemySize = 60; 
-let maxEnemies = 20; 
 let enemySpeedMin = 1.5;
 let enemySpeedMax = 3;
 let enemySpawnInterval = 120; // Per frame count
@@ -32,10 +36,15 @@ let looseRopeAmount = 1;
 let ropeWiggleAmount = 5;
 // Assets 
 let mainMenuImg;
+let pauseMenuImg;
 let startBG;  
 let instructionBG; 
 let exitBG; 
 let backBG;
+let yesB;
+let yesBG;
+let noB;
+let noBG;
 let spaceshipImg;
 let enemyImg;
 let playerImg;
@@ -46,11 +55,16 @@ let playerImg;
 function preload(){
 // Backgrounds  
  mainMenuImg = loadImage("assets/Main_Menu.png");
+ pauseMenuImg = loadImage("assets/Pause_Menu.png");
 // Buttons 
  startBG = loadImage("assets/Start_Button_Glow.png");
  instructionBG = loadImage("assets/Instruct_Button_Glow.png");
  exitBG = loadImage("assets/Exit_Button_Glow.png");
  backBG = loadImage("assets/Back_Button_Glow.png");
+ yesB = loadImage("assets/Yes_Button.png");
+ yesBG = loadImage("assets/Yes_Button_Glow.png");
+ noB = loadImage("assets/No_Button.png");
+ noBG = loadImage("assets/No_Button_Glow.png");
 // Game 
  spaceshipImg = loadImage("assets/spaceship.png");
  enemyImg = loadImage("assets/Enemy.png");
@@ -113,6 +127,22 @@ function mainMenuState() {
   }
 }
 
+function pauseMenuState() {
+imageMode(CENTER);
+image(pauseMenuImg, width / 2, height / 2, 400, 200); // Pause menu image position ------------->
+
+  // Create buttons
+  pauseYesButton = new button(width / 2 - 80, height / 2 + 40, pausebuttonHeight, pausebuttonWidth, yesBG, "yes", yesB); 
+  pauseYesButton.update();
+  pauseYesButton.show();
+  debugDraw(pauseYesButton);
+
+  pauseNoButton = new button(width / 2 + 80, height / 2 + 40, pausebuttonHeight, pausebuttonWidth, noBG, "no", noB );
+  pauseNoButton.update();
+  pauseNoButton.show();
+  debugDraw(pauseNoButton);
+}
+
 function menuTransitions() {
   imageMode(CORNER);
   image(mainMenuImg, 0, 0, width, height, 0, cameraY, width, height);
@@ -146,6 +176,10 @@ function startGame() {
 function updateGame() {
   background(0); //~~REPLACE WITH SELECTION OF BACKGROUND~~////~~~~~~~~~~~CHANGE WHEN ASSETS ARE DONE~~~~~~~~~~~~~//
 
+  if (isPaused) {
+    pauseMenuState();
+    return; 
+  }
   // Spaceship loop
   let hb = spaceship.getHitbox();
   spaceship.update();
@@ -172,19 +206,28 @@ function updateGame() {
       enemies[i].x < playerHb.x + playerHb.size / 2 &&
       enemies[i].y > playerHb.y - playerHb.size / 2 &&
       enemies[i].y < playerHb.y + playerHb.size / 2 ) 
+      
     {
-      enemies.splice(i, 1); // Remove enemy on collision
+      enemies.splice(i, 1); // Remove enemy on player collision
+    }
+
+     else if ( enemies[i].x > hb.x - hb.size / 2 && 
+      enemies[i].x < hb.x + hb.size / 2 &&
+      enemies[i].y > hb.y - hb.size / 2 &&
+      enemies[i].y < hb.y + hb.size / 2 ) 
+    {
+      enemies.splice(i, 1); // Remove enemy on ship collision
     }
   }
-}
+  }
+
 
 // Enemy //
 function spawnEnemy() {
   let newEnemy;
   let validSpawn = false; 
   let attempts = 0;
-
-  if (enemies.length >= maxEnemies) return;  // Prevent too many enemies on screen at once
+  
   while (!validSpawn && attempts < 20) { // Find a valid spawn position
     newEnemy = new enemy();
     validSpawn = true;
@@ -211,7 +254,22 @@ function debugDraw(obj) {
 
 
 // -- Inputs -- //
-function mousePressed() {
+function mousePressed() { 
+if (gameState === "game" && isPaused) {
+
+ if (pauseYesButton.ishovered) {
+  isPaused = false;
+  gameStarted = false;
+  gameState = "transition";   
+  targetY = menuYPos;
+ } 
+   
+ if (pauseNoButton.ishovered) {
+  isPaused = false;
+  }
+  return;
+}
+
   if (gameState === "instructions") {
     if (backButton.ishovered) {
       gameState = "transition";
@@ -237,22 +295,33 @@ function mousePressed() {
 
   if (btn.action === "exit") {
   window.location.href = "https://junecran.github.io/MA1805-SpringFinalProject/";
+   }
+  }
 }
-  }}
+
+function keyPressed() {
+  if (gameState === "game" && (key === 'e' || key === 'E')) {
+    isPaused = !isPaused;
+  }
+}
 
 
 // -- Class -- //
 // - Interactive Button - //
 class button {
-  constructor(x, y, w, h, glowImg, action) {
-    this.x = x;
-    this.y = y;
-    this.w = w;
-    this.h = h;
-    this.glowImg = glowImg;
-    this.action = action;
-    this.ishovered = false;
-  }
+constructor(x, y, w, h, glowImg, action, baseImg = null) {
+  this.x = x;
+  this.y = y;
+  this.w = w;
+  this.h = h;
+
+  this.glowImg = glowImg; // Hover image 
+  this.baseImg = baseImg; // Default image (optional)
+
+  this.action = action;
+  this.ishovered = false;
+}
+
 // Mouse hovering interaction
   update() {
     this.ishovered = (
@@ -263,12 +332,24 @@ class button {
     );
   }
 
-  show() {
+show() {
+  imageMode(CENTER);
+
+  if (this.baseImg) {
+    // Pause menu style (base + hover glow)
+    image(this.baseImg, this.x, this.y, this.w, this.h);
+
     if (this.ishovered) {
-      imageMode(CENTER);
+      image(this.glowImg, this.x, this.y, this.w, this.h);
+    }
+
+  } else {
+    // Old behavior (main menu)
+    if (this.ishovered) {
       image(this.glowImg, this.x, this.y, this.w, this.h);
     }
   }
+}
 
   // Debug: To see the Placement of button interaction
   debug() {
@@ -279,8 +360,7 @@ class button {
   }
 }
 
-
-// - Spaceship & Player - //
+// - Spaceship - //
 class playerSpaceship {
   constructor(x, y) {
     this.x = x;
@@ -315,6 +395,7 @@ debug() {
   }
 }
 
+// - Player - //
 class tetheredPlayer {
   constructor(x, y) {
     this.x = x;
@@ -404,7 +485,6 @@ class tetheredPlayer {
 
    }
   }
-
 
 // - Enemy - //
 class enemy {
