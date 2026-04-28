@@ -346,6 +346,7 @@ class tetheredPlayer {
   _}
   }
 
+  LARGE PENIS
 // Rope Tethered Physics //
   show(anchorX, anchorY) {
     let segments = 80; // Rope allowance
