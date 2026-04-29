@@ -53,7 +53,8 @@ let playerImg;
 // Audio
 let bgMusic;
 let enemyHitSound;
-let Volume = 0.5; 
+let spaceshipDamageSound;
+let Volume = 0.3; 
 
 
 // -- Preload Images -- // 
@@ -77,7 +78,8 @@ function preload(){
  playerImg = loadImage("assets/player.png");
  //Audio
  bgMusic = loadSound("assets/backgroundaudio.mp3");
-enemyHitSound = loadSound("assets/shipdamage.mp3");
+ enemyHitSound = loadSound("assets/enemycollision/mp3")
+spaceshipDamageSound = loadSound("assets/shipdamage.mp3");
 }
 
 
@@ -234,6 +236,7 @@ image(selectedMainMenuImg, 0, 0, 1280, 720);
       enemies[i].y > hb.y - hb.size / 2 &&
       enemies[i].y < hb.y + hb.size / 2 ) 
     {
+      spaceshipDamageSound.play();
       enemies.splice(i, 1); // Remove enemy on ship collision
     }
   }
@@ -320,6 +323,12 @@ if (gameState === "game" && isPaused) {
 function keyPressed() {
   if (gameState === "game" && (key === 'e' || key === 'E')) {
     isPaused = !isPaused;
+
+    if (isPaused) {
+      bgMusic.pause();
+    } else {
+      bgMusic.Play();
+    }
   }
 }
 
