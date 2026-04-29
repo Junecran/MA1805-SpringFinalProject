@@ -50,7 +50,10 @@ let noBG;
 let spaceshipImg;
 let enemyImg;
 let playerImg;
-
+// Audio
+let bgMusic;
+let enemyHitSound;
+let Volume = 0.5; 
 
 
 // -- Preload Images -- // 
@@ -72,6 +75,9 @@ function preload(){
  spaceshipImg = loadImage("assets/spaceship.png");
  enemyImg = loadImage("assets/Enemy.png");
  playerImg = loadImage("assets/player.png");
+ //Audio
+ bgMusic = loadSound("assets/backgroundaudio.mp3");
+enemyHitSound = loadSound("assets/shipdamange.mp3");
 }
 
 
@@ -166,6 +172,11 @@ function menuTransitions() {
 // Game Logic //
 function startGame() {
   gameStarted = true;
+  if (!bgMusic.isPlaying()){
+    bgMusic.setLoop(true);
+    bgMusic.setVolume(Volume);
+    bgMusic.Play();
+  }
   lastSpawnFrame = frameCount; 
   spaceship = new playerSpaceship(width / 2, height / 2);
   player = new tetheredPlayer(width / 2, height / 2);
@@ -212,8 +223,9 @@ image(selectedMainMenuImg, 0, 0, 1280, 720);
       enemies[i].x < playerHb.x + playerHb.size / 2 &&
       enemies[i].y > playerHb.y - playerHb.size / 2 &&
       enemies[i].y < playerHb.y + playerHb.size / 2 ) 
-      
+ 
     {
+       enemyHitSound.play();
       enemies.splice(i, 1); // Remove enemy on player collision
     }
 
