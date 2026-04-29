@@ -227,6 +227,7 @@ image(selectedMainMenuImg, 0, 0, 1280, 720);
       enemies[i].y < playerHb.y + playerHb.size / 2 ) 
  
     {
+      enemyHitSound.setVolume(Volume);
        enemyHitSound.play();
       enemies.splice(i, 1); // Remove enemy on player collision
     }
@@ -236,6 +237,7 @@ image(selectedMainMenuImg, 0, 0, 1280, 720);
       enemies[i].y > hb.y - hb.size / 2 &&
       enemies[i].y < hb.y + hb.size / 2 ) 
     {
+      spaceshipDamageSound.setVolume(Volume);
       spaceshipDamageSound.play();
       enemies.splice(i, 1); // Remove enemy on ship collision
     }
