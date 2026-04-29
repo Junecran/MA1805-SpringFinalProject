@@ -175,7 +175,7 @@ function startGame() {
   if (!bgMusic.isPlaying()){
     bgMusic.setLoop(true);
     bgMusic.setVolume(Volume);
-    bgMusic.Play();
+    bgMusic.play();
   }
   lastSpawnFrame = frameCount; 
   spaceship = new playerSpaceship(width / 2, height / 2);
