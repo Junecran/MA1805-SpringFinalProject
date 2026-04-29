@@ -3,7 +3,7 @@
 // Default Game State 
 let gameState = "mainMenu"; // Can change for debug (mainMenu,game,transition,instructions)
 let gameStarted = false;
-let debugMode = true;
+let debugMode = false;
 // Inputs 
 let cameraY = 0;
 let targetY = 0;
@@ -17,10 +17,10 @@ let isPaused = false;
 let pauseYesButton;
 let pauseNoButton;
 let pausebuttonHeight = 120;
-let pausebuttonWidth = 60;
+let pausebuttonWidth = 50;
 // Enemies 
 let enemies = [];
-let enemySize = 60; 
+let enemySize = 50; 
 let enemySpeedMin = 1.5;
 let enemySpeedMax = 3;
 let enemySpawnInterval = 120; // Per frame count
@@ -28,6 +28,7 @@ let enemySpawnDistance = 80; // Prevents overlap
 // Player & Environment 
 let spaceship;
 let spaceshipHitBoxSize = 20;
+let playerHitBoxSize = 30;
 let player;
 let lastSpawnFrame = 0;
 let ropeConstrainLength = 120;
@@ -105,7 +106,7 @@ function InstructionsMenuState() {
   imageMode(CORNER);
   image(mainMenuImg, 0, 0, width, height, 0, cameraY, width, height);
 
-  backButton = new button(960, 625, 200, 80, backBG, "back"); // Instructions menu back button position ------------->
+  backButton = new button(1163, 65, 159, 66, backBG, "back"); // Instructions menu back button position ------------->
   backButton.update();
   backButton.show();
   debugDraw(backButton);
@@ -117,9 +118,9 @@ function mainMenuState() {
   if (gameState !== "mainMenu") return;
 
   mainMenuButtons = [ // Main menu buttons position --------------> 
-  new button(320, 625, 200, 80, startBG, "start"),
-  new button(640, 625, 200, 80, instructionBG, "instruct"),
-  new button(960, 625, 200, 80, exitBG, "exit")
+  new button(250, 624, 219, 88, startBG, "start"),
+  new button(640, 624, 219, 88, instructionBG, "instruct"),
+  new button(1030, 624, 219, 88, exitBG, "exit")
   ];
 
   for (let btn of mainMenuButtons) {
@@ -131,7 +132,7 @@ function mainMenuState() {
 
 function pauseMenuState() {
 imageMode(CENTER);
-image(pauseMenuImg, width / 2, height / 2, 400, 200); // Pause menu image position ------------->
+image(pauseMenuImg, width / 2, height / 2, 442, 200); // Pause menu image position ------------->
 
   // Create buttons
   pauseYesButton = new button(width / 2 - 80, height / 2 + 40, pausebuttonHeight, pausebuttonWidth, yesBG, "yes", yesB); 
@@ -153,8 +154,6 @@ function menuTransitions() {
   if (abs(cameraY - targetY) < 1) {
   if (targetY === gameYPos) {
   gameState = "game";
-  gameFade = 255;     // start fully black
-  isFadingIn = true;  // enable fade-in
     } else if (targetY === instructYPos) {
       gameState = "instructions";
     } else {
@@ -381,7 +380,7 @@ class playerSpaceship {
 
   show() {
     imageMode(CENTER);
-    image(spaceshipImg, this.x, this.y, 80, 80);
+    image(spaceshipImg, this.x, this.y, 80, 150);
 }
 
   getHitbox() { 
@@ -415,7 +414,7 @@ class tetheredPlayer {
     return {
       x: this.x, 
       y: this.y,
-      size: spaceshipHitBoxSize
+      size: playerHitBoxSize
     };
   }
 
@@ -488,7 +487,7 @@ class tetheredPlayer {
 
   // Player Appearance //
   imageMode(CENTER);
-  image(playerImg, this.x, this.y, 50, 50);
+  image(playerImg, this.x, this.y, 50, 100);
 
    }
   }
