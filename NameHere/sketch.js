@@ -77,7 +77,7 @@ function preload(){
  playerImg = loadImage("assets/player.png");
  //Audio
  bgMusic = loadSound("assets/backgroundaudio.mp3");
-enemyHitSound = loadSound("assets/shipdamange.mp3");
+enemyHitSound = loadSound("assets/shipdamage.mp3");
 }
 
 
