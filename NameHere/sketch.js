@@ -106,10 +106,7 @@ function draw() {
     if (!gameStarted)
     startGame();
     updateGame();
-    fill(255);
-textSize(48);
-textAlign(LEFT, TOP);
-text("Health: " + shipHealth, 20, 20);
+    
   }
 }
 
@@ -246,13 +243,13 @@ image(selectedMainMenuImg, 0, 0, 1280, 720);
       spaceshipDamageSound.setVolume(Volume);
       spaceshipDamageSound.play();
       enemies.splice(i, 1); // Remove enemy on ship collision
-      shipHealth--; 
-      if (shipHealth <= 0) {
+      spaceshipHealth--; 
+      if (spaceshipHealth <= 0) {
     gameOver();
     }
   }
   }
-
+}
 
 // Enemy //
 function spawnEnemy() {
