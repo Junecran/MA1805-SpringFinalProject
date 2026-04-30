@@ -56,6 +56,7 @@ let bgMusic;
 let enemyHitSound;
 let spaceshipDamageSound;
 let Volume = 0.3; 
+let uiHoverSound;
 
 
 // -- Preload Images -- // 
@@ -81,6 +82,7 @@ function preload(){
  bgMusic = loadSound("assets/backgroundaudio.mp3");
  enemyHitSound = loadSound("assets/enemycollision.mp3")
 spaceshipDamageSound = loadSound("assets/shipdamage.mp3");
+uiHoverSound = loadSound("assets/UIInteract.mp3")
 }
 
 
@@ -251,8 +253,8 @@ text("Health: " + spaceshipHealth, 20, 20);
       spaceshipHealth--; 
       if (spaceshipHealth <= 0) {
     gameStarted = false;
-gameState = "transition";
-targetY = menuYPos;
+    gameState = "transition";
+    targetY = menuYPos;
     }
   }
   }
@@ -362,16 +364,24 @@ constructor(x, y, w, h, glowImg, action, baseImg = null) {
 
   this.action = action;
   this.ishovered = false;
+  this.wasHovered = false;
 }
 
 // Mouse hovering interaction
   update() {
-    this.ishovered = (
-      mouseX > this.x - this.w / 2 &&
-      mouseX < this.x + this.w / 2 &&
-      mouseY > this.y - this.h / 2 &&
-      mouseY < this.y + this.h / 2
-    );
+    let hovered =
+    mouseX > this.x - this.w / 2 &&
+    mouseX < this.x + this.w / 2 &&
+    mouseY > this.y - this.h / 2 &&
+    mouseY < this.y + this.h / 2;
+
+  if (hovered && !this.wasHovered) {
+    uiHoverSound.setVolume(0.4);
+    uiHoverSound.play();
+  }
+
+  this.wasHovered = hovered;
+  this.ishovered = hovered;
   }
 
 show() {
