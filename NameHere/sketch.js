@@ -364,24 +364,17 @@ constructor(x, y, w, h, glowImg, action, baseImg = null) {
 
   this.action = action;
   this.ishovered = false;
-  this.wasHovered = false;
+
 }
 
 // Mouse hovering interaction
   update() {
-    let hovered =
-    mouseX > this.x - this.w / 2 &&
-    mouseX < this.x + this.w / 2 &&
-    mouseY > this.y - this.h / 2 &&
-    mouseY < this.y + this.h / 2;
-
-  if (hovered && !this.wasHovered) {
-    uiHoverSound.setVolume(0.4);
-    uiHoverSound.play();
-  }
-
-  this.wasHovered = hovered;
-  this.ishovered = hovered;
+    this.ishovered = (
+      mouseX > this.x - this.w / 2 &&
+      mouseX < this.x + this.w / 2 &&
+      mouseY > this.y - this.h / 2 &&
+      mouseY < this.y + this.h / 2
+    );
   }
 
 show() {
