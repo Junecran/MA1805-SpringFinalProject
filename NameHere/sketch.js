@@ -28,6 +28,7 @@ let enemySpawnDistance = 80; // Prevents overlap
 // Player & Environment 
 let spaceship;
 let spaceshipHitBoxSize = 20;
+let spaceshipHealth = 10;
 let playerHitBoxSize = 30;
 let player;
 let lastSpawnFrame = 0;
@@ -105,6 +106,10 @@ function draw() {
     if (!gameStarted)
     startGame();
     updateGame();
+    fill(255);
+textSize(48);
+textAlign(LEFT, TOP);
+text("Health: " + shipHealth, 20, 20);
   }
 }
 
@@ -183,6 +188,7 @@ function startGame() {
   spaceship = new playerSpaceship(width / 2, height / 2);
   player = new tetheredPlayer(width / 2, height / 2);
   enemies = [];
+  spaceshipHealth = 10;
  
  for (let i = 0; i < 5; i++) {
     spawnEnemy();
@@ -240,6 +246,9 @@ image(selectedMainMenuImg, 0, 0, 1280, 720);
       spaceshipDamageSound.setVolume(Volume);
       spaceshipDamageSound.play();
       enemies.splice(i, 1); // Remove enemy on ship collision
+      shipHealth--; 
+      if (shipHealth <= 0) {
+    gameOver();
     }
   }
   }
