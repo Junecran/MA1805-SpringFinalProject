@@ -250,7 +250,7 @@ text("Health: " + spaceshipHealth, 20, 20);
       enemies.splice(i, 1); // Remove enemy on ship collision
       spaceshipHealth--; 
       if (spaceshipHealth <= 0) {
-    gameOver();
+    mainMenuState();
     }
   }
   }
