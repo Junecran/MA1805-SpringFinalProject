@@ -197,6 +197,11 @@ background(0);
 imageMode(CORNER);
 image(selectedMainMenuImg, 0, 0, 1280, 720);
 
+fill(255);
+textSize(48);
+textAlign(LEFT, TOP);
+text("Health: " + spaceshipHealth, 20, 20);
+
   if (isPaused) {
     pauseMenuState();
     return; 
