@@ -377,10 +377,12 @@ constructor(x, y, w, h, glowImg, action, baseImg = null) {
   );
 
   // Play sound only when hover starts
-  if (nowHovered && !this.wasHovered) {
-    uiHoverSound.setVolume(Volume);
-    uiHoverSound.play();
-  }
+ if (nowHovered && !this.wasHovered) {
+  uiHoverSound.setVolume(Volume);
+  uiHoverSound.stop();
+  uiHoverSound.play();
+}
+  
 
   this.ishovered = nowHovered;
   this.wasHovered = nowHovered;
