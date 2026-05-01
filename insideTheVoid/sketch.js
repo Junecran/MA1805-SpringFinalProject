@@ -100,7 +100,6 @@ function preload(){
 }
 
 
-
 // -- Functions & Setups -- //
 // Essentials //
 function setup() {
