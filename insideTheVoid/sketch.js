@@ -63,7 +63,7 @@ let overlayImg;
 let bgMusic;
 let enemyHitSound;
 let spaceshipDamageSound;
-let Volume = 0.3; 
+let Volume = 0.2; 
 let uiHoverSound;
 
 
@@ -114,17 +114,21 @@ function setup() {
 }
 
 function draw() {
-if (gameState === "mainMenu") 
-if (gameState === "transition") menuTransitions();
-  else if (gameState === "instructions") InstructionsMenuState();
-if (gameState === "game") {
-  bgMusic.setVolume(0.1);
-    if (!gameStarted)
+  if (gameState === "mainMenu") {
+    mainMenuState();
+  } 
+  else if (gameState === "transition") {
+    menuTransitions();
+  } 
+  else if (gameState === "instructions") {
+    InstructionsMenuState();
+  } 
+  else if (gameState === "game") {
+    if (!gameStarted) 
     startGame();
     updateGame();
   }
 }
-
 
 //  Menus //
 function mainMenuState() {
