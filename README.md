@@ -38,7 +38,7 @@ Despite these challenges, the project remains built on a solid foundation and de
 - Menus/UI & Transitions
 - player & Enemies movement
 
-**Simon Bahrani** - [Link to Text Simon file](insideTheVoid/index.html)
+**Simon Bahrani** - [Link to Text Simon file]()
 - Sounds
 - Ship Health mechanic
 - Sprite Collisions 
