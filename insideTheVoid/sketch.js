@@ -70,12 +70,12 @@ let uiHoverSound;
 // -- Preload Images -- // 
 function preload(){
 // Backgrounds & Overlays  
- mainMenuImg = loadImage("assets/userInterface/mainMenu.png");
- selectedMainMenuImg = loadImage("assets/userInterface/mainMenu_Selection.png");
- pauseMenuImg = loadImage("assets/userInterface/pauseMenu.png");
- titleImg = loadImage("assets/userInterface/mainMenu_Title.png");
- titleGlowImg = loadImage("assets/userInterface/mainMenu_TitleGlow.png");
- overlayImg = loadImage("assets/userInterface/gameGlow.png");
+ mainMenuImg = loadImage("assets/mainMenu.png");
+ selectedMainMenuImg = loadImage("assets/mainMenu_Selection.png");
+ pauseMenuImg = loadImage("assets/pauseMenu.png");
+ titleImg = loadImage("assets/mainMenu_Title.png");
+ titleGlowImg = loadImage("assets/mainMenu_TitleGlow.png");
+ overlayImg = loadImage("assets/gameGlow.png");
  // Game 
  enemyImg = loadImage("assets/sprites/enemy.png");
  playerImg = loadImage("assets/sprites/player.png");
@@ -85,14 +85,14 @@ spaceshipImgs = [
   loadImage("assets/sprites/spaceship_Stage3.png"),
   loadImage("assets/sprites/spaceship_Stage4.png")];
 // Buttons 
- startBG = loadImage("assets/userInterface/startButton_Glow.png");
- instructionBG = loadImage("assets/userInterface/instructButton_Glow.png");
- exitBG = loadImage("assets/userInterface/exitButton_Glow.png");
- backBG = loadImage("assets/userInterface/backButton_Glow.png");
- yesB = loadImage("assets/userInterface/yesButton.png");
- yesBG = loadImage("assets/userInterface/yesButton_Glow.png");
- noB = loadImage("assets/userInterface/noButton.png");
- noBG = loadImage("assets/userInterface/noButton_Glow.png");
+ startBG = loadImage("assets/startButton_Glow.png");
+ instructionBG = loadImage("assets/instructButton_Glow.png");
+ exitBG = loadImage("assets/exitButton_Glow.png");
+ backBG = loadImage("assets/backButton_Glow.png");
+ yesB = loadImage("assets/yesButton.png");
+ yesBG = loadImage("assets/yesButton_Glow.png");
+ noB = loadImage("assets/noButton.png");
+ noBG = loadImage("assets/noButton_Glow.png");
  //Audio
  bgMusic = loadSound("assets/audio/backgroundaudio.mp3");
  enemyHitSound = loadSound("assets/audio/enemycollision.mp3")
