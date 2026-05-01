@@ -114,10 +114,13 @@ function setup() {
 }
 
 function draw() {
-  if (gameState === "mainMenu") mainMenuState();
+if (gameState === "mainMenu") {
+  bgMusic.setVolume(0.2);
+}
   else if (gameState === "transition") menuTransitions();
   else if (gameState === "instructions") InstructionsMenuState();
-  else if (gameState === "game") {
+if (gameState === "game") {
+  bgMusic.setVolume(0.5);
     if (!gameStarted)
     startGame();
     updateGame();
