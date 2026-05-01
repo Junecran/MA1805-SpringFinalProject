@@ -4,33 +4,32 @@
 
 # Link to ['Inside The Void'](insideTheVoid/index.html) 
 
-This experimental mini-game explores a survival experience set in the quiet emptiness of space, using it as a metaphor for isolation and the damage to mental health. The player controls a fragile, tethered spacecraft that represents a shifting mental state, where visual damage like flickers and gradual decay suggests growing psychological pressure over time. Enemies drift in from the darkness as bad intrusive thoughts , constantly closing in and reflecting how persistent and difficult these mental patterns can be to escape.
+Step into the void with this experimental mini-game, where the vast emptiness becomes a powerful metaphor for isolation and mental health. You guide a delicate, tethered spacecraft that mirrors your own emotional state, while shadowy enemies drift by as the embodiment of intrusive thoughts.
 
-Instead of combat, the focus is on movement and awareness. Simple mouse controls keep the interaction direct and instinctive, while the rope tether adds a sense of restriction and balance, reinforcing the idea that control is always limited and stability has to be constantly maintained. Overall, the game aims to create a reflective, slightly uneasy atmosphere that connects gameplay mechanics with ideas around mental health, highlighting the quiet, ongoing effort it takes to manage intrusive thoughts and stay grounded.
+ With only simple mouse controls and a rope tether, every movement demands awareness and balance, highlighting your limitations. The experience is designed to evoke reflection, weaving gameplay and the challenge of managing intrusive thoughts into one seamless journey.
 
 **Theme & Design Choices**  
-* The spaceship stands for the player’s mental state, and taking damage shows growing emotional strain. Enemies represent intrusive thoughts that keep coming after the player, highlighting how hard they are to avoid.
-* Rather than using weapons, the game focuses on movement and contact, which stands for facing these thoughts head-on. Using the mouse to control the game makes the experience feel more instinctive and intense.
-* The player is tied to a rope, which shows a fragile link to stability. This mechanic highlights both the limits the player faces and how hard it is to fully escape negative thoughts.
-* Visual cues like flickering, screen overlays, and no visible health bar quietly show things getting worse. This reflects how mental health problems can often go unnoticed.
-* A scrolling camera and very little guidance make the player feel disoriented and lost. Without a scoring system, the game shifts focus from winning to just surviving constant pressure.
-* The visual style matches the theme, using cold, faded colours to show isolation. Small touches of red stand for resilience, and yellow for hope. The pixel art keeps things abstract and focuses on mood instead of realism.
-* The audio design is intentionally simple yet highly impactful, featuring eerie, atmospheric space tones that build tension, alongside clear and immersive sound cues for enemy encounters and ship impacts that enhance feedback and gameplay feel.
+* The spaceship represents the player’s mental state through visible damage, while persistent enemies highlight intrusive thoughts.
+* Instead of weapons, gameplay centres on movement and contact, facing negative thoughts head-on, with mouse controls making it feel personal.
+* The rope visibly reflects a fragile connection to stability and the struggle to escape negative thoughts.
+* Visual cues like flickering, overlays, and no health bar show silent decline, mirroring how mental health often goes unnoticed.
+* A scrolling camera, limited guidance, and no scoring system create disorientation and shift focus from winning to enduring ongoing pressure.
+* The game uses cold, faded colours to show isolation. Red stands for resilience, and yellow for hope. Pixel art keeps the mood abstract rather than realistic.
+* The audio is simple but effective, with eerie space sounds that build tension. Clear sound cues for enemy encounters and ship impacts help give feedback and make the gameplay feel more immersive.
 
 ## Debrief
-* The game was organised using distinct game states such as the main menu, instructions, transitions, and gameplay. This approach maintained structure, avoiding the pitfalls of placing all code together. Each state was given its own function, which made managing and debugging the project more straightforward.
-* Using classes like Enemy and Player to organise the main sprites made the code easier to read and reuse. For example, I could create several enemies from the same Enemy class instead of writing new code every time.
-* A simplified system was implemented for the tethered player instead of a comprehensive physics engine. However, this approach introduced issues, such as movement feeling unnatural or overly elastic in zero gravity. These challenges made it difficult to find comparable solutions (as detailed in Eleanor's text file).
-* Simple square hitboxes were employed for collisions, primarily for their ease of implementation, despite not perfectly matching the sprites' forms. Given the simplicity of the game mechanics, high precision was deemed unnecessary.
-* As features like pause and menus were introduced, managing game states became increasingly complex. Minimising the number of states and consolidating functions helped to streamline this process. Nevertheless, debugging became more challenging, leading to the creation of a dedicated debug mode.
+* We organised the game using different game states, like the main menu, instructions, transitions, and gameplay. This kept things structured and avoided putting all the code in one place. Giving each state its own function made it easier to manage and debug the project.
+* We used classes like Enemy and Player to organise the main sprites. This made the code easier to read and reuse. For example, we could create several enemies from the same Enemy class instead of writing new code each time.
+* We used a simple system for the tethered player instead of a full physics engine. The simple system ensured it did not feel unnatural or too elastic in zero gravity. 
+* We used simple square hitboxes and collision detection. Although these hitboxes do not match the exact sprite shapes, they are easy to set up. Since the mechanics are basic, high precision was unnecessary.
+* As we added features like pause and menus, managing game states became more complicated. We simplified this by reducing the number of states and combining functions. However, this made debugging difficult, so we created a debug mode that could be toggled in code to show which parts worked.
 
 **Future Improvements**
-* The rope system could be refined to have a greater impact on gameplay and player experience. Stronger feedback, such as a more noticeable snap-back or a pronounced pulling force toward the spaceship, would enhance the sense of connection and tension.
-* Player movement and animation also present opportunities for improvement. Allowing the player sprite to rotate with movement direction or integrating minor shaking effects when the spaceship is damaged would offer clearer visual feedback, making the game more immersive.
-* Introducing a greater variety of enemies, such as faster ones, would elevate challenge and diversity. This approach would sustain player interest while preserving the game’s visual and emotional style, avoiding an overly mechanical feel.
+* We could improve the rope system to make it affect gameplay and the player’s experience more. Adding stronger feedback, like a more obvious snap-back or a stronger pull toward the spaceship, would help create a better sense of connection and tension.
+* There are also ways to improve player movement and animation. Letting the player sprite rotate with movement or adding small shaking effects when the spaceship is damaged would give clearer feedback and make the game feel more immersive.
+* Adding more enemy types, like faster ones, would increase the challenge while maintaining the mood. 
 
-Despite these challenges, the project remains built on a solid foundation and delivers a strong emotional impact. Further development of the rope mechanics, player feedback, and gameplay variety would enhance immersion and engagement, all while retaining the intended visual and experiential qualities.
-
+Further development of the rope mechanics, player feedback, and gameplay variety would enhance immersion and engagement, all while retaining the intended visual and experiential qualities.
 
 ## Group Members & Main Responsibilities:
 
@@ -49,24 +48,23 @@ Despite these challenges, the project remains built on a solid foundation and de
 [**Link to Art References**](https://uk.pinterest.com/Blank9289/project-inspiration/2d-pixel-game-inspiration-outerbreak/)
 
 ### Early Concepts
-1. Noise Parkcore (Rain + Water Creature Platformer)
-A game where loud noises trigger rain. The player is a water creature that jumps between puddles. Without a microphone input, the character creates sound by jumping into puddles.
+* **Noise Parkcore (Rain + Water Creature Platformer)**
+This game idea features loud noises that trigger rain. The player controls a water creature that jumps between puddles. If there’s no microphone input, the character makes sound by jumping into puddles.
 
-2. Music Soundboard Birds (Interactive Music System)
-A music-making tool where power lines act as a musical staff. Birds sit on the lines like notes, each representing a different instrument or sound.
+* **Music Soundboard Birds (Interactive Music System)**
+This idea is a music-making tool where power lines act as a musical staff. Birds sit on the lines like notes, and each bird stands for a different instrument or sound.
 
-3. Wordplay Art Room 
-A room filled with objects that have double meanings. Interacting with an object transforms it into its alternate meaning (e.g., computer mouse → real mouse). It could include word puzzle mechanics like Wordle.
+* **Wordplay Art Room**
+This concept is a room full of objects with double meanings. When you interact with an object, it changes into its other meaning, like a computer mouse turning into a real mouse. It could also include word puzzle mechanics similar to Wordle.
 
-4. Unscrabble Witch Game
-Letters are dragged into a magic circle. They slowly fade or resist, making word formation feel magical and unstable.
+* **Unscrabble Witch Game**
+Players drag letters into a magic circle, where they fade or resist, making word creation magical. 
 
-### Change Dirction
-We first planned to make a game, but we found ourselves more interested in **emotion and atmosphere**. Rather than setting goals, we focused on how the world feels and how it affects the player’s senses. The project became an interactive art piece where mood and sensory experience matter more than traditional gameplay.
 
-After that, we looked for themes that would give the experience real meaning. We thought about ideas like hope versus despair, mental health struggles, illness, and the quiet comfort found in uncertainty or adventure. Each theme led us to new emotions and helped us picture how a player might feel in our world. In the end, we chose to focus on **loneliness**, a feeling that is shared by many.
+### Change Direction
+We initially planned to make a game, but soon shifted to creating an interactive art piece focused on emotion and atmosphere, prioritising sensory experience over traditional gameplay. We explored themes like hope, despair, mental health, illness, and comfort in uncertainty or adventure, leading us to focus on loneliness, a widely relatable emotion today.
 
 ### Final Concepts
-Our project started as a traditional game idea but grew into an interactive experience focused on atmosphere and feelings. The gameplay uses simple actions (moving, staying alive, and interacting) along with visual and sound effects like flickering screens, health-based visual changes, and background sounds to create tension and a feeling of weakness.
+The project became an interactive experience. Simple actions, visuals, and sounds create tension and vulnerability, with sounds responding to player actions and visuals highlighting key moments.
 
-At its core, the experience explores **loneliness and stress through gameplay and design**. The tethered player system makes players feel dependent and limited, while enemies appearing all the time add threat and worry. Even the menu changes and the user interface build the atmosphere, showing the world is not just a place to play but something to feel and understand. Rather than a clear goals or a way to win, the project acts more like an interactive art piece. 
+The experience explores loneliness and stress. The 'tethered player system' connects players to an object or boundary, creating dependence and emphasising threats. With no clear goals or ways to win, it functions as an interactive art piece, with menus and interface supporting the mood.

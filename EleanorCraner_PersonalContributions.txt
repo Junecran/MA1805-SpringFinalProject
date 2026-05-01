@@ -6,40 +6,36 @@ Game link - https://junecran.github.io/MA1805-SpringFinalProject/insideTheVoid/i
 
 
 __________________________________________________
-             Achieved Contributions
+             Achieved Personal Contributions
 __________________________________________________
 
-* Developed multiple game states (distinct modes of play), including main menu, gameplay, instructions, and pause menu. Implemented smooth camera transitions between these states.
+* Developed main menu, gameplay, instructions, and pause modes. Added smooth camera transitions between them.
 
-* Created interactive UI (user interface) buttons for menus such as Start, Instructions, Exit, Back, and Pause options, allowing players to navigate easily.
+* Created interactive UI buttons (Start, Instructions, Exit, Back, Pause) for easy player navigation.
 
-* Managed enemy spawning with adjustable parameters to control difficulty.
+* Added enemies with managed spawning and adjustable difficulty.
 
-* Programmed player character movement and rendering (drawing the character on screen), including spaceship visuals and a base for future hitboxes (areas detecting collisions).
+* Programmed player movement and rendering, including spaceship visuals and a base for hitboxes.
 
-* Added a tethered player mechanic with constrained movement (rope-style gameplay, where the character moves within a limited distance from a fixed point or another object).
+* Added tethered movement, limiting the player within a rope-style range.
 
-* Adjusted enemy speed, spawn distance, and UI placement during testing.
-
-* Used debug mode (development setting to spot errors) and iterative testing (repeated trials to improve gameplay) to refine gameplay and fix issues during development.
-
+* Made a debug mode and tested repeatedly to refine gameplay and fix bugs.
  
 __________________________________________________
                      Debrief 
 __________________________________________________
   
-I focused on creating an immersive experience by making the environment feel alive through smooth camera movement, lighting, and subtle animated effects, which helped improve the overall flow and player engagement.
+Focused on immersive experiences by adding smooth camera, lighting, and subtle animation to boost flow and engagement.
 * Improvement: The code needs cleaner organisation. I believe my goal of making sure the values were easy to find resulted in overcomplicating the global variables.
 
-I believe the structured game state system (main menu, game, instructions, pause) helped improve the  organisation in the code and makes it easier to control what is displayed at any time.
-* Improvement: the modular design wasn’t fully executed well, as I found it easier to manually set values to have better control over  placement (e.g., the buttons), which may make it difficult to adapt to different screen sizes or resolutions
+Structured game states improved code organisation and display control.
+* Improvement: Modular design fell short; setting values manually improved control (e.g., button placement), but may limit screen adaptability.
 
 The use of pixel art combined with a cold, minimal visual style helps reinforce the game’s atmosphere and theme, making the experience feel more surreal and intentionally lonely.
-* Improvement: Adding more visual variation or animation would push the visuals further. For example, different enemies could symbolise various negative emotions or worries, and animating the player could show responses to damage (such as visual changes to the ship when hit).
+* More visuals or animation would help: different enemies could symbolise emotions, and player animation could react to ship damage.
 
-The enemy spawning system enabled scalable difficulty and controlled pacing.
-* Improvement: The difficulty progression (increase in challenge as the game advances) is currently static and could be improved with dynamic scaling based on player performance, which could even add depth to the theme of the game.
-
+Enemy spawning enables scalable difficulty and controls pacing.
+* Difficulty now progresses statically. Dynamic scaling based on performance could add depth and fit the theme.
 
 __________________________________________________
                   Research Notes
