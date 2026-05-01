@@ -70,12 +70,12 @@ let uiHoverSound;
 // -- Preload Images -- // 
 function preload(){
 // Backgrounds & Overlays  
- mainMenuImg = loadImage("assets/mainMenu.png");
- selectedMainMenuImg = loadImage("assets/mainMenu_Selection.png");
- pauseMenuImg = loadImage("assets/pauseMenu.png");
- titleImg = loadImage("assets/mainMenu_Title.png");
- titleGlowImg = loadImage("assets/mainMenu_TitleGlow.png");
- overlayImg = loadImage("assets/gameGlow.png");
+ mainMenuImg = loadImage("assets/user/mainMenu.png");
+ selectedMainMenuImg = loadImage("assets/user/mainMenu_Selection.png");
+ pauseMenuImg = loadImage("assets/user/pauseMenu.png");
+ titleImg = loadImage("assets/user/mainMenu_Title.png");
+ titleGlowImg = loadImage("assets/user/mainMenu_TitleGlow.png");
+ overlayImg = loadImage("assets/user/gameGlow.png");
  // Game 
  enemyImg = loadImage("assets/sprites/enemy.png");
  playerImg = loadImage("assets/sprites/player.png");
