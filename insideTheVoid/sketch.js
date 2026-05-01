@@ -71,34 +71,33 @@ let uiHoverSound;
 function preload(){
 // User & Backgrounds  
  mainMenuImg = loadImage("assets/user/mainMenu.png");
- //selectedMainMenuImg = loadImage("assets/user/mainMenu_Selection.png");
- //pauseMenuImg = loadImage("assets/user/pauseMenu.png");
- //titleImg = loadImage("assets/user/mainMenu_Title.png");
- //titleGlowImg = loadImage("assets/user/mainMenu_TitleGlow.png");
-
+ selectedMainMenuImg = loadImage("assets/user/mainMenu_Selection.png");
+ pauseMenuImg = loadImage("assets/user/pauseMenu.png");
+ titleImg = loadImage("assets/user/mainMenu_Title.png");
+ titleGlowImg = loadImage("assets/user/mainMenu_TitleGlow.png");
  // Game 
- //enemyImg = loadImage("assets/sprites/enemy.png");
- //playerImg = loadImage("assets/sprites/player.png");
- //spaceshipImgs = [
-  //loadImage("assets/sprites/spaceship_NoDamage.png"),
- // loadImage("assets/sprites/spaceship_Stage2.png"),
- // loadImage("assets/sprites/spaceship_Stage3.png"),
- // loadImage("assets/sprites/spaceship_Stage4.png")];
+ enemyImg = loadImage("assets/sprites/enemy.png");
+ playerImg = loadImage("assets/sprites/player.png");
+ spaceshipImgs = [
+  loadImage("assets/sprites/spaceship_NoDamage.png"),
+  loadImage("assets/sprites/spaceship_Stage2.png"),
+  loadImage("assets/sprites/spaceship_Stage3.png"),
+  loadImage("assets/sprites/spaceship_Stage4.png")];
 // Buttons 
-// backBG = loadImage("assets/user/backButton_Glow.png"); 
- //exitBG = loadImage("assets/user/exitButton_Glow.png");
- //startBG = loadImage("assets/user/startButton_Glow.png");
- //overlayImg = loadImage("assets/user/gameGlow.png");
- //instructionBG = loadImage("assets/user/instructButton_Glow.png");
-// yesB = loadImage("assets/user/yesButton.png");
- //yesBG = loadImage("assets/user/yesButton_Glow.png");
- //noB = loadImage("assets/user/noButton.png");
- //noBG = loadImage("assets/user/noButton_Glow.png");
+ backBG = loadImage("assets/user/backButton_Glow.png"); 
+ exitBG = loadImage("assets/user/exitButton_Glow.png");
+ startBG = loadImage("assets/user/startButton_Glow.png");
+ overlayImg = loadImage("assets/user/gameGlow.png");
+ instructionBG = loadImage("assets/user/instructButton_Glow.png");
+ yesB = loadImage("assets/user/yesButton.png");
+ yesBG = loadImage("assets/user/yesButton_Glow.png");
+ noB = loadImage("assets/user/noButton.png");
+ noBG = loadImage("assets/user/noButton_Glow.png");
  //Audio
- //bgMusic = loadSound("assets/audio/backgroundaudio.mp3");
- //enemyHitSound = loadSound("assets/audio/enemycollision.mp3");
-// spaceshipDamageSound = loadSound("assets/audio/shipdamage.mp3");
-// uiHoverSound = loadSound("assets/audio/UIInteract.mp3");
+ bgMusic = loadSound("assets/audio/backgroundaudio.mp3");
+ enemyHitSound = loadSound("assets/audio/enemycollision.mp3");
+ spaceshipDamageSound = loadSound("assets/audio/shipdamage.mp3");
+ uiHoverSound = loadSound("assets/audio/UIInteract.mp3");
 }
 
 
@@ -106,6 +105,7 @@ function preload(){
 // Essentials //
 function setup() {
   createCanvas(1280, 720);
+  console.log(typeof loadSound);
 
 
   menuYPos = mainMenuImg.height / 2 - height / 2;
