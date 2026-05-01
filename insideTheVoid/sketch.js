@@ -106,8 +106,6 @@ function preload(){
 function setup() {
   createCanvas(1280, 720);
   console.log(typeof loadSound);
-
-
   menuYPos = mainMenuImg.height / 2 - height / 2;
   instructYPos = 0; // Top of image
   gameYPos = mainMenuImg.height - height; // Bottom of image
@@ -116,14 +114,12 @@ function setup() {
 }
 
 function draw() {
-  if (gameState === "mainMenu") mainMenuState();
   else if (gameState === "transition") menuTransitions();
   else if (gameState === "instructions") InstructionsMenuState();
   else if (gameState === "game") {
     if (!gameStarted)
     startGame();
     updateGame();
-    
   }
 }
 
@@ -202,11 +198,6 @@ function pauseMenuState() {
 // Game Logic //
 function startGame() {
   gameStarted = true;
-  if (!bgMusic.isPlaying()){
-    bgMusic.setLoop(true);
-    bgMusic.setVolume(Volume);
-    bgMusic.play();
-  }
   overlayAlpha = 0;
   overlayTargetAlpha = 120;
   lastSpawnFrame = frameCount; 
@@ -364,6 +355,12 @@ function debugDraw(obj) {
 
 // -- Inputs -- //
 function mousePressed() { 
+    userStartAudio();
+    if (!bgMusic.isPlaying()){
+    bgMusic.setLoop(true);
+    bgMusic.setVolume(Volume);
+    bgMusic.play();
+    }
 if (gameState === "game" && isPaused) {
 
  if (pauseYesButton.ishovered) {
