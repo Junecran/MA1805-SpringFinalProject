@@ -363,6 +363,7 @@ function debugDraw(obj) {
 
 // -- Inputs -- //
 function mousePressed() { 
+  userStartAudio();
 if (gameState === "game" && isPaused) {
 
  if (pauseYesButton.ishovered) {
