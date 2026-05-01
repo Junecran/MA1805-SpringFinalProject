@@ -2,7 +2,7 @@
 **By Eleanor Craner & Simon Bahrani** - [Host GitHub Link](https://github.com/Junecran/MA1805-SpringFinalProject) - [Website Link](https://junecran.github.io/MA1805-SpringFinalProject/) 
 
 
-# [Inside The Void](insideTheVoid\index.html) - Link to Mini Game 01
+# [Inside The Void](insideTheVoid\index.html) - Link to Mini Game 02
 
 This experimental mini-game explores a survival experience set in the quiet emptiness of space, using it as a metaphor for isolation and the damage to mental health. The player controls a fragile, tethered spacecraft that represents a shifting mental state, where visual damage like flickers and gradual decay suggests growing psychological pressure over time. Enemies drift in from the darkness as bad intrusive thoughts , constantly closing in and reflecting how persistent and difficult these mental patterns can be to escape.
 
