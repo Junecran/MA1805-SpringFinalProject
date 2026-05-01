@@ -85,19 +85,19 @@ spaceshipImgs = [
   loadImage("assets/sprites/spaceship_Stage3.png"),
   loadImage("assets/sprites/spaceship_Stage4.png")];
 // Buttons 
- startBG = loadImage("assets/startButton_Glow.png");
- instructionBG = loadImage("assets/instructButton_Glow.png");
- exitBG = loadImage("assets/exitButton_Glow.png");
- backBG = loadImage("assets/backButton_Glow.png");
- yesB = loadImage("assets/yesButton.png");
- yesBG = loadImage("assets/yesButton_Glow.png");
- noB = loadImage("assets/noButton.png");
- noBG = loadImage("assets/noButton_Glow.png");
+ startBG = loadImage("assets/user/startButton_Glow.png");
+ instructionBG = loadImage("assets/user/instructButton_Glow.png");
+ exitBG = loadImage("assets/user/exitButton_Glow.png");
+ backBG = loadImage("assets/user/backButton_Glow.png");
+ yesB = loadImage("assets/user/yesButton.png");
+ yesBG = loadImage("assets/user/yesButton_Glow.png");
+ noB = loadImage("assets/user/noButton.png");
+ noBG = loadImage("assets/user/noButton_Glow.png");
  //Audio
  bgMusic = loadSound("assets/audio/backgroundaudio.mp3");
  enemyHitSound = loadSound("assets/audio/enemycollision.mp3")
  spaceshipDamageSound = loadSound("assets/audio/shipdamage.mp3");
- uiHoverSound = loadSound("assets/audio/UIInteract.mp3");
+ uiHoverSound = loadSound("assets/audio/uIInteract.mp3");
 }
 
 
