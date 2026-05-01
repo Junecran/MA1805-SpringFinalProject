@@ -53,7 +53,7 @@ let yesB;
 let yesBG;
 let noB;
 let noBG;
-let spaceshipImgs = [];
+let imgs;
 let enemyImg;
 let playerImg;
 let titleImg;
@@ -86,10 +86,10 @@ function preload(){
  noB = loadImage("assets/userInterface/noButton.png");
  noBG = loadImage("assets/userInterface/noButton_Glow.png");
 // Game 
- spaceshipImgs[0] = loadImage("assets/sprites/spaceship_NoDamage.png");
- spaceshipImgs[1] = loadImage("assets/sprites/spaceship_Stage2.png");
- spaceshipImgs[2] = loadImage("assets/sprites/spaceship_Stage3.png");
- spaceshipImgs[3] = loadImage("assets/sprites/spaceship_Stage4.png");
+ spaceshipImgs0 = loadImage("assets/sprites/spaceship_NoDamage.png");
+ spaceshipImgs1 = loadImage("assets/sprites/spaceship_Stage2.png");
+ spaceshipImgs2 = loadImage("assets/sprites/spaceship_Stage3.png");
+ spaceshipImgs3 = loadImage("assets/sprites/spaceship_Stage4.png");
  enemyImg = loadImage("assets/sprites/enemy.png");
  playerImg = loadImage("assets/sprites/player.png");
  //Audio
@@ -97,6 +97,11 @@ function preload(){
  enemyHitSound = loadSound("assets/audio/enemycollision.mp3")
  spaceshipDamageSound = loadSound("assets/audio/shipdamage.mp3");
  uiHoverSound = loadSound("assets/audio/UIInteract.mp3");
+ imgs = [
+  spaceshipImgs0,
+  spaceshipImgs1,
+  spaceshipImgs2,
+  spaceshipImgs3];
 }
 
 
@@ -104,8 +109,8 @@ function preload(){
 // Essentials //
 function setup() {
   createCanvas(1280, 720);
-  loadSound();
-  
+
+
   menuYPos = mainMenuImg.height / 2 - height / 2;
   instructYPos = 0; // Top of image
   gameYPos = mainMenuImg.height - height; // Bottom of image
@@ -484,7 +489,7 @@ class playerSpaceship {
    imageMode(CENTER);
 
   let stage = getDamageStage(spaceshipHealth);
-  image(spaceshipImgs[stage], this.x, this.y, 80, 150);
+ image(imgs[stage], this.x, this.y, 80, 150);
  }
 
   getHitbox() { 
