@@ -48,7 +48,7 @@ let yesB;
 let yesBG;
 let noB;
 let noBG;
-let spaceshipImg;
+let spaceshipImgs = [];
 let enemyImg;
 let playerImg;
 // Audio
@@ -75,14 +75,18 @@ function preload(){
  noB = loadImage("assets/No_Button.png");
  noBG = loadImage("assets/No_Button_Glow.png");
 // Game 
- spaceshipImg = loadImage("assets/spaceship.png");
+ spaceshipImgs[0] = loadImage("assets/spaceship_NoDamage.png");
+ spaceshipImgs[1] = loadImage("assets/spaceship_Stage2.png");
+ spaceshipImgs[2] = loadImage("assets/spaceship_Stage3.png");
+ spaceshipImgs[3] = loadImage("assets/spaceship_Stage4.png");
  enemyImg = loadImage("assets/Enemy.png");
  playerImg = loadImage("assets/player.png");
+
  //Audio
  bgMusic = loadSound("assets/backgroundaudio.mp3");
  enemyHitSound = loadSound("assets/enemycollision.mp3")
-spaceshipDamageSound = loadSound("assets/shipdamage.mp3");
-uiHoverSound = loadSound("assets/UIInteract.mp3")
+ spaceshipDamageSound = loadSound("assets/shipdamage.mp3");
+ uiHoverSound = loadSound("assets/UIInteract.mp3")
 }
 
 
@@ -199,11 +203,6 @@ background(0);
 imageMode(CORNER);
 image(selectedMainMenuImg, 0, 0, 1280, 720);
 
-fill(255);
-textSize(48);
-textAlign(LEFT, TOP);
-text("Health: " + spaceshipHealth, 20, 20);
-
   if (isPaused) {
     pauseMenuState();
     return; 
@@ -281,6 +280,12 @@ function spawnEnemy() {
   enemies.push(newEnemy);
 }
 
+function getDamageStage(health) {
+  if (health >= 8) return 0;
+  else if (health >= 5) return 1;
+  else if (health >= 2) return 2;
+  else return 3;
+}
 // Debug Mode //
 function debugDraw(obj) {
   if (!debugMode) return;
@@ -288,8 +293,6 @@ function debugDraw(obj) {
     obj.debug();
   }
 }
-
-
 
 // -- Inputs -- //
 function mousePressed() { 
@@ -418,9 +421,11 @@ class playerSpaceship {
   }
 
   show() {
-    imageMode(CENTER);
-    image(spaceshipImg, this.x, this.y, 80, 150);
-}
+   imageMode(CENTER);
+
+  let stage = getDamageStage(spaceshipHealth);
+  image(spaceshipImgs[stage], this.x, this.y, 80, 150);
+ }
 
   getHitbox() { 
     return {
@@ -437,6 +442,11 @@ debug() {
    stroke(255, 0, 0);
    rectMode(CENTER);
    rect(hb.x, hb.y, hb.size, hb.size);
+
+   fill(255);
+   textSize(48);
+   textAlign(LEFT, TOP);
+   text("Health: " + spaceshipHealth, 20, 20);
   }
 }
 
