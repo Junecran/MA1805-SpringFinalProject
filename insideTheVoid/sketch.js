@@ -53,7 +53,7 @@ let yesB;
 let yesBG;
 let noB;
 let noBG;
-let imgs;
+let spaceshipImgs = [];
 let enemyImg;
 let playerImg;
 let titleImg;
@@ -76,6 +76,14 @@ function preload(){
  titleImg = loadImage("assets/userInterface/mainMenu_Title.png");
  titleGlowImg = loadImage("assets/userInterface/mainMenu_TitleGlow.png");
  overlayImg = loadImage("assets/userInterface/gameGlow.png");
+ // Game 
+ enemyImg = loadImage("assets/sprites/enemy.png");
+ playerImg = loadImage("assets/sprites/player.png");
+spaceshipImgs = [
+  loadImage("assets/sprites/spaceship_NoDamage.png"),
+  loadImage("assets/sprites/spaceship_Stage2.png"),
+  loadImage("assets/sprites/spaceship_Stage3.png"),
+  loadImage("assets/sprites/spaceship_Stage4.png")];
 // Buttons 
  startBG = loadImage("assets/userInterface/startButton_Glow.png");
  instructionBG = loadImage("assets/userInterface/instructButton_Glow.png");
@@ -85,23 +93,11 @@ function preload(){
  yesBG = loadImage("assets/userInterface/yesButton_Glow.png");
  noB = loadImage("assets/userInterface/noButton.png");
  noBG = loadImage("assets/userInterface/noButton_Glow.png");
-// Game 
- spaceshipImgs0 = loadImage("assets/sprites/spaceship_NoDamage.png");
- spaceshipImgs1 = loadImage("assets/sprites/spaceship_Stage2.png");
- spaceshipImgs2 = loadImage("assets/sprites/spaceship_Stage3.png");
- spaceshipImgs3 = loadImage("assets/sprites/spaceship_Stage4.png");
- enemyImg = loadImage("assets/sprites/enemy.png");
- playerImg = loadImage("assets/sprites/player.png");
  //Audio
  bgMusic = loadSound("assets/audio/backgroundaudio.mp3");
  enemyHitSound = loadSound("assets/audio/enemycollision.mp3")
  spaceshipDamageSound = loadSound("assets/audio/shipdamage.mp3");
  uiHoverSound = loadSound("assets/audio/UIInteract.mp3");
- imgs = [
-  spaceshipImgs0,
-  spaceshipImgs1,
-  spaceshipImgs2,
-  spaceshipImgs3];
 }
 
 
@@ -187,19 +183,19 @@ function menuTransitions() {
 }
 
 function pauseMenuState() {
-imageMode(CENTER);
-image(pauseMenuImg, width / 2, height / 2, 442, 200); // Pause menu image position ------------->
+  imageMode(CENTER);
+  image(pauseMenuImg, width / 2, height / 2, 442, 200);
 
-  // Create buttons
-  pauseYesButton = new button(width / 2 - 80, height / 2 + 40, pausebuttonHeight, pausebuttonWidth, yesBG, "yes", yesB); 
+  if (!pauseYesButton || !pauseNoButton) {
+    pauseYesButton = new button(width / 2 - 80, height / 2 + 40, pausebuttonHeight, pausebuttonWidth, yesBG, "yes", yesB);
+    pauseNoButton = new button(width / 2 + 80, height / 2 + 40, pausebuttonHeight, pausebuttonWidth, noBG, "no", noB);
+  }
+
   pauseYesButton.update();
   pauseYesButton.show();
-  debugDraw(pauseYesButton);
 
-  pauseNoButton = new button(width / 2 + 80, height / 2 + 40, pausebuttonHeight, pausebuttonWidth, noBG, "no", noB );
   pauseNoButton.update();
   pauseNoButton.show();
-  debugDraw(pauseNoButton);
 }
 
 // Game Logic //
@@ -383,7 +379,7 @@ if (gameState === "game" && isPaused) {
 }
 
   if (gameState === "instructions") {
-    if (backButton.ishovered) {
+    if (backButton && backButton.ishovered) {
       gameState = "transition";
       targetY = menuYPos; 
     }
@@ -489,7 +485,10 @@ class playerSpaceship {
    imageMode(CENTER);
 
   let stage = getDamageStage(spaceshipHealth);
- image(imgs[stage], this.x, this.y, 80, 150);
+  let img = spaceshipImgs[stage];
+   if (img) {
+    image(img, this.x, this.y, 80, 150);
+   }
  }
 
   getHitbox() { 
