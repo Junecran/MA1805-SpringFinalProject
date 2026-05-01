@@ -356,7 +356,7 @@ function debugDraw(obj) {
 
 // -- Inputs -- //
 function mousePressed() { 
-    userStartAudio();
+    
     if (!bgMusic.isPlaying()){
     bgMusic.setLoop(true);
     bgMusic.setVolume(Volume);
