@@ -114,6 +114,7 @@ function setup() {
 }
 
 function draw() {
+  if (gameState === "mainMenu") mainMenuState();
   else if (gameState === "transition") menuTransitions();
   else if (gameState === "instructions") InstructionsMenuState();
   else if (gameState === "game") {
