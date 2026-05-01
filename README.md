@@ -1,5 +1,5 @@
 # MA1805-SpringFinalProject
-** By Eleanor Craner & Simon Bahrani** - [Host GitHub Link](https://github.com/Junecran/MA1805-SpringFinalProject) - [Website Link](https://junecran.github.io/MA1805-SpringFinalProject/)
+**By Eleanor Craner & Simon Bahrani** - [Host GitHub Link](https://github.com/Junecran/MA1805-SpringFinalProject) - [Website Link](https://junecran.github.io/MA1805-SpringFinalProject/)
 
 
 # [Inside The Void](MA1805-SpringFinalProject\insideTheVoid\index.html) - Link to Mini Game
