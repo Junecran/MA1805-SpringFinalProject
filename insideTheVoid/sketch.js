@@ -105,7 +105,7 @@ function preload(){
 // Essentials //
 function setup() {
   createCanvas(1280, 720);
-
+  userStartAudio();
 
   menuYPos = mainMenuImg.height / 2 - height / 2;
   instructYPos = 0; // Top of image
@@ -363,7 +363,6 @@ function debugDraw(obj) {
 
 // -- Inputs -- //
 function mousePressed() { 
-  userStartAudio();
 if (gameState === "game" && isPaused) {
 
  if (pauseYesButton.ishovered) {
