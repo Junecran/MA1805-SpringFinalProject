@@ -96,7 +96,7 @@ function preload(){
  bgMusic = loadSound("assets/audio/backgroundaudio.mp3");
  enemyHitSound = loadSound("assets/audio/enemycollision.mp3")
  spaceshipDamageSound = loadSound("assets/audio/shipdamage.mp3");
- uiHoverSound = loadSound("assets/audio/UIInteract.mp3")
+ uiHoverSound = loadSound("assets/audio/UIInteract.mp3");
 }
 
 
@@ -104,6 +104,7 @@ function preload(){
 // Essentials //
 function setup() {
   createCanvas(1280, 720);
+  loadSound();
   
   menuYPos = mainMenuImg.height / 2 - height / 2;
   instructYPos = 0; // Top of image
