@@ -106,4 +106,17 @@ _________________________________________________
 __________________________________________________
 
 
-
+* Calculates a number between two numbers at a specific increment. - https://p5js.org/reference/p5/lerp/
+* Curve vertex - https://p5js.org/reference/p5/curveVertex/
+* 2D collision detection - https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+* Game loops - https://gameprogrammingpatterns.com/game-loop.html
+* Game states introduction - https://gameprogrammingpatterns.com/state.html
+* Calculates the angle formed by a point, the origin, and the positive x-axis. - https://p5js.org/reference/p5/atan2/
+* Rope physics - https://explosion-scratch.github.io/blog/rope-simulation/
+* Rope Length and gravity - https://stackoverflow.com/questions/54752383/how-to-make-a-ball-hang-from-a-rope
+* Rope Example - https://prancer.physics.louisville.edu/modules/rope/index.html
+* Mathematics of motion - https://nehe.gamedev.net/tutorial/rope_physics/17006/
+* A camera enables scrolling and viewing scenes larger than the canvas - https://boldideainc.github.io/p5.game/docs/classes/Camera.html
+* Re-maps a number from one range to another - https://p5js.org/reference/p5/map/
+* Sine wave animation - https://www.shader-learn.com/en/learn/math/sine-wave
+* Games use sine waves to animate objects like plants reacting to wind , extra learning - https://developer.nvidia.com/gpugems/gpugems3/part-iii-rendering/chapter-16-vegetation-procedural-animation-and-shading-crysis

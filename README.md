@@ -15,6 +15,7 @@ Instead of combat, the focus is on movement and awareness. Simple mouse controls
 * Visual cues like flickering, screen overlays, and no visible health bar quietly show things getting worse. This reflects how mental health problems can often go unnoticed.
 * A scrolling camera and very little guidance make the player feel disoriented and lost. Without a scoring system, the game shifts focus from winning to just surviving constant pressure.
 * The visual style matches the theme, using cold, faded colours to show isolation. Small touches of red stand for resilience, and yellow for hope. The pixel art keeps things abstract and focuses on mood instead of realism.
+* The audio design is intentionally simple yet highly impactful, featuring eerie, atmospheric space tones that build tension, alongside clear and immersive sound cues for enemy encounters and ship impacts that enhance feedback and gameplay feel.
 
 ## Debrief
 * The game was organised using distinct game states such as the main menu, instructions, transitions, and gameplay. This approach maintained structure, avoiding the pitfalls of placing all code together. Each state was given its own function, which made managing and debugging the project more straightforward.
@@ -38,7 +39,7 @@ Despite these challenges, the project remains built on a solid foundation and de
 - Menus/UI & Transitions
 - player & Enemies movement
 
-**Simon Bahrani** - [Link to Text Simon file]()
+**Simon Bahrani** 
 - Sounds
 - Ship Health mechanic
 - Sprite Collisions 
