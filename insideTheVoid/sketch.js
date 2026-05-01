@@ -70,33 +70,33 @@ let uiHoverSound;
 // -- Preload Images -- // 
 function preload(){
 // Backgrounds & Overlays  
- mainMenuImg = loadImage("assets/Main_Menu.png");
- selectedMainMenuImg = loadImage("assets/Main_Menu_Selection.png");
- pauseMenuImg = loadImage("assets/Pause_Menu.png");
- titleImg = loadImage("assets/Main_Menu_Title.png");
- titleGlowImg = loadImage("assets/Title_Glowing.png");
- overlayImg = loadImage("assets/Glowing.png");
+ mainMenuImg = loadImage("assets/userInterface/mainMenu.png");
+ selectedMainMenuImg = loadImage("assets/userInterface/mainMenu_Selection.png");
+ pauseMenuImg = loadImage("assets/userInterface/pauseMenu.png");
+ titleImg = loadImage("assets/userInterface/mainMenu_Title.png");
+ titleGlowImg = loadImage("assets/userInterface/mainMenu_TitleGlow.png");
+ overlayImg = loadImage("assets/userInterface/gameGlow.png");
 // Buttons 
- startBG = loadImage("assets/Start_Button_Glow.png");
- instructionBG = loadImage("assets/Instruct_Button_Glow.png");
- exitBG = loadImage("assets/Exit_Button_Glow.png");
- backBG = loadImage("assets/Back_Button_Glow.png");
- yesB = loadImage("assets/Yes_Button.png");
- yesBG = loadImage("assets/Yes_Button_Glow.png");
- noB = loadImage("assets/No_Button.png");
- noBG = loadImage("assets/No_Button_Glow.png");
+ startBG = loadImage("assets/userInterface/startButton_Glow.png");
+ instructionBG = loadImage("assets/userInterface/instructButton_Glow.png");
+ exitBG = loadImage("assets/userInterface/exitButton_Glow.png");
+ backBG = loadImage("assets/userInterface/backButton_Glow.png");
+ yesB = loadImage("assets/userInterface/yesButton.png");
+ yesBG = loadImage("assets/userInterface/yesButton_Glow.png");
+ noB = loadImage("assets/userInterface/noButton.png");
+ noBG = loadImage("assets/userInterface/noButton_Glow.png");
 // Game 
- spaceshipImgs[0] = loadImage("assets/spaceship_NoDamage.png");
- spaceshipImgs[1] = loadImage("assets/spaceship_Stage2.png");
- spaceshipImgs[2] = loadImage("assets/spaceship_Stage3.png");
- spaceshipImgs[3] = loadImage("assets/spaceship_Stage4.png");
- enemyImg = loadImage("assets/Enemy.png");
- playerImg = loadImage("assets/player.png");
+ spaceshipImgs[0] = loadImage("assets/sprites/spaceship_NoDamage.png");
+ spaceshipImgs[1] = loadImage("assets/sprites/spaceship_Stage2.png");
+ spaceshipImgs[2] = loadImage("assets/sprites/spaceship_Stage3.png");
+ spaceshipImgs[3] = loadImage("assets/sprites/spaceship_Stage4.png");
+ enemyImg = loadImage("assets/sprites/enemy.png");
+ playerImg = loadImage("assets/sprites/player.png");
  //Audio
- bgMusic = loadSound("assets/backgroundaudio.mp3");
- enemyHitSound = loadSound("assets/enemycollision.mp3")
- spaceshipDamageSound = loadSound("assets/shipdamage.mp3");
- uiHoverSound = loadSound("assets/UIInteract.mp3")
+ bgMusic = loadSound("assets/audio/backgroundaudio.mp3");
+ enemyHitSound = loadSound("assets/audio/enemycollision.mp3")
+ spaceshipDamageSound = loadSound("assets/audio/shipdamage.mp3");
+ uiHoverSound = loadSound("assets/audio/UIInteract.mp3")
 }
 
 
@@ -292,19 +292,22 @@ function spawnEnemy() {
   let validSpawn = false; 
   let attempts = 0;
   
-  while (!validSpawn && attempts < 20) { // Find a valid spawn position
+  while (!validSpawn && attempts < 30) { 
     newEnemy = new enemy();
     validSpawn = true;
 
     for (let e of enemies) {
-      if (dist(newEnemy.x, newEnemy.y, e.x, e.y) < enemySpawnDistance) { // If too close to another enemy, mark as not vaild
+      if (dist(newEnemy.x, newEnemy.y, e.x, e.y) < enemySpawnDistance) {
         validSpawn = false;
         break;
       }
     }
     attempts++;
   }
-  enemies.push(newEnemy);
+
+  if (validSpawn) { // Only add enemy if a valid position was found
+    enemies.push(newEnemy);
+  }
 }
 
 function getDamageStage(health) {
@@ -407,8 +410,6 @@ if (gameState === "game" && isPaused) {
 function keyPressed() {
   if (gameState === "game" && (key === 'e' || key === 'E')) {
     isPaused = !isPaused;
-
- 
   }
 }
 

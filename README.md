@@ -2,7 +2,7 @@
 **Eleanor Craner & Simon Bahrani** - [Host GitHub Link](https://github.com/Junecran/MA1805-SpringFinalProject) - [Website Link](https://junecran.github.io/MA1805-SpringFinalProject/)
 
 
-# [NameHere](http://127.0.0.1:5500/NameHere/index.html) - Link to 'Type Here'
+# [Inside The Void](insideTheVoid/index.html) - Link to Experimental Mini Game
 
 Small description here
 
@@ -19,24 +19,24 @@ Small description here
 -
 
 
-## References and Study Notes
-- The auto padding & window sizing - https://www.w3schools.com/css/css3_flexbox.asp
+## Concept Development & References
 
 
 
 
 
 
-# Group Members & Responsibilities:
 
-**Eleanor Craner** 
+# Group Members & Main Responsibilities:
+
+**Eleanor Craner** - [Link to Text file](EleanorCraner_PersonalContributions.txt)
 - Pixel Art 
-- Menus & Transitions
-- 
+- Menus/Ui & Transitions
+- player & Enemies movement
 
-**Simon Bahrani** 
--
--
--
+**Simon Bahrani** [Link to Text file](insideTheVoid/index.html)
+- Sounds
+- Ship Health mechanic
+- Sprite Collisions 
 
 
