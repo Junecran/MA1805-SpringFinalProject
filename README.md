@@ -1,28 +1,20 @@
 # MA1805-SpringFinalProject
-**Eleanor Craner & Simon Bahrani** - [Host GitHub Link](https://github.com/Junecran/MA1805-SpringFinalProject) - [Website Link](https://junecran.github.io/MA1805-SpringFinalProject/)
+** By Eleanor Craner & Simon Bahrani** - [Host GitHub Link](https://github.com/Junecran/MA1805-SpringFinalProject) - [Website Link](https://junecran.github.io/MA1805-SpringFinalProject/)
 
 
-# [Inside The Void](insideTheVoid/index.html) - Link to Experimental Mini Game
+# [Inside The Void](insideTheVoid/index.html) - Link to Mini Game
 
 This experimental mini-game explores a survival experience set in the quiet emptiness of space, using it as a metaphor for isolation and the damage to mental health. The player controls a fragile, tethered spacecraft that represents a shifting mental state, where visual damage like flickers and gradual decay suggests growing psychological pressure over time. Enemies drift in from the darkness as bad intrusive thoughts , constantly closing in and reflecting how persistent and difficult these mental patterns can be to escape.
 
 Instead of combat, the focus is on movement and awareness. Simple mouse controls keep the interaction direct and instinctive, while the rope tether adds a sense of restriction and balance, reinforcing the idea that control is always limited and stability has to be constantly maintained. Overall, the game aims to create a reflective, slightly uneasy atmosphere that connects gameplay mechanics with ideas around mental health, highlighting the quiet, ongoing effort it takes to manage intrusive thoughts and stay grounded.
 
 **Theme & Design Choices**  
-* Space is used as a metaphor for loneliness and mental isolation, creating an empty environment that reflects disconnection.
-* The spaceship represents the player’s mental state, with visible damage reflecting emotional strain and psychological pressure over time.
-* Enemies symbolise intrusive thoughts and worries that persistently target the ship (the player’s mind), showing how difficult they are to escape.
-* The game removes weapons, using movement and physical contact to represent confronting intrusive thoughts within the subconscious.
-* Mouse-based control creates an instinctive, personal experience demanding constant awareness and reaction under pressure.
-* A tethered character and rope mechanic represent a fragile connection to stability, highlighting limits and the inability to fully escape negative thoughts.
-* Visual effects such as flickering and overlays intensify as damage increases, reinforcing anxiety and mental deterioration.
-* Health is not explicitly shown; instead, damage is communicated subtly to reflect how mental health decline can go unnoticed.
-* The downward-scrolling camera aimed to reinforce descent into isolation, while the upward scroll toward guidance feels disorienting.
-* The guide provides minimal instructions, reflecting how people often must navigate mental health challenges with limited support.
-* There is no score system; the focus is on survival through managing internal and external pressures rather than achieving ‘victory’.
-* The cold, desaturated colour palette reinforces isolation and emotional distance throughout the experience.
-* Pops of red in the player’s ship symbolise strength to keep going, while yellow sparingly in UI elements and lights around the ship represent hope and moments of clarity within the darkness.
-* Pixel art is a simple style that supports the abstract psychological themes without distracting details. It keeps the focus on movement and atmosphere instead of realism. It also makes visual effects like flickering, colour changes, and distortion more noticeable, reinforcing the emotional tone of the experience.
+* The spaceship stands for the player’s mental state, and taking damage shows growing emotional strain. Enemies represent intrusive thoughts that keep coming after the player, highlighting how hard they are to avoid.
+* Rather than using weapons, the game focuses on movement and contact, which stands for facing these thoughts head-on. Using the mouse to control the game makes the experience feel more instinctive and intense.
+* The player is tied to a rope, which shows a fragile link to stability. This mechanic highlights both the limits the player faces and how hard it is to fully escape negative thoughts.
+* Visual cues like flickering, screen overlays, and no visible health bar quietly show things getting worse. This reflects how mental health problems can often go unnoticed.
+* A scrolling camera and very little guidance make the player feel disoriented and lost. Without a scoring system, the game shifts focus from winning to just surviving constant pressure.
+* The visual style matches the theme, using cold, faded colours to show isolation. Small touches of red stand for resilience, and yellow for hope. The pixel art keeps things abstract and focuses on mood instead of realism.
 
 ## Debrief
 * The game was organised using distinct game states such as the main menu, instructions, transitions, and gameplay. This approach maintained structure, avoiding the pitfalls of placing all code together. Each state was given its own function, which made managing and debugging the project more straightforward.
@@ -53,7 +45,7 @@ Despite these challenges, the project remains built on a solid foundation and de
 
 
 ## Concept Development & References
-[**Art References**](https://uk.pinterest.com/Blank9289/project-inspiration/2d-pixel-game-inspiration-outerbreak/)
+[**Link to Art References**](https://uk.pinterest.com/Blank9289/project-inspiration/2d-pixel-game-inspiration-outerbreak/)
 
 ### Early Concepts
 1. Noise Parkcore (Rain + Water Creature Platformer)
