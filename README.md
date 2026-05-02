@@ -1,12 +1,14 @@
-# MA1805-SpringFinalProject
-**By Eleanor Craner & Simon Bahrani** - [Host GitHub Link](https://github.com/Junecran/MA1805-SpringFinalProject) - [Website Link](https://junecran.github.io/MA1805-SpringFinalProject/) 
+# **Inside The Void**
 
+**By Eleanor Craner & Simon Bahrani** 
+- [Host GitHub Link](https://github.com/Junecran/MA1805-SpringFinalProject) 
+- [Website Link](https://junecran.github.io/MA1805-SpringFinalProject/) 
+- ['Inside The Void' Link](insideTheVoid/index.html) 
 
-# Link to ['Inside The Void'](insideTheVoid/index.html) 
-
+### **Description**
 Step into the void with this experimental mini-game, where the vast emptiness becomes a powerful metaphor for isolation and mental health. You guide a delicate, tethered spacecraft that mirrors your own emotional state, while shadowy enemies drift by as the embodiment of intrusive thoughts.
 
- With only simple mouse controls and a rope tether, every movement demands awareness and balance, highlighting your limitations. The experience is designed to evoke reflection, weaving gameplay and the challenge of managing intrusive thoughts into one seamless journey.
+With only simple mouse controls and a rope tether, every movement demands awareness and balance, highlighting your limitations. The experience is designed to evoke reflection, weaving gameplay and the challenge of managing intrusive thoughts into one seamless journey.
 
 **Theme & Design Choices**  
 * The spaceship represents the player’s mental state through visible damage, while persistent enemies highlight intrusive thoughts.
@@ -45,7 +47,7 @@ Further development of the rope mechanics, player feedback, and gameplay variety
 
 
 ## Concept Development & References
-[**Link to Art References**](https://uk.pinterest.com/Blank9289/project-inspiration/2d-pixel-game-inspiration-outerbreak/)
+[**Link to Art References**](https://uk.pinterest.com/Blank9289/project-inspiration/2d-pixel-game-inspiration/)
 
 ### Early Concepts
 * **Noise Parkcore (Rain + Water Creature Platformer)**
