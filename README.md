@@ -6,7 +6,7 @@
  - [Host GitHub](https://github.com/Junecran/MA1805-SpringFinalProject) 
  - [Website](https://junecran.github.io/MA1805-SpringFinalProject/) 
  - ['Inside The Void'](insideTheVoid/index.html) 
- - [Link to Art References](https://uk.pinterest.com/Blank9289/project-inspiration/2d-pixel-game-inspiration/)
+ - [Art References](https://uk.pinterest.com/Blank9289/project-inspiration/2d-pixel-game-inspiration/)
  - [Eleanor Personal Text File](textFiles/EleanorCraner_PersonalContributions.txt)
 
 
