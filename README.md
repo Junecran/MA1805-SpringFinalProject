@@ -46,7 +46,7 @@ Further development of the rope mechanics, player feedback, and gameplay variety
 - Menus/UI & Transitions
 - player & Enemies movement
 
-2. **Simon Bahrani** 
+2. **Simon Bahrani** [Personal Text File](textFiles/SimonBahrani_PersonalContributions.txt)
 - Sounds
 - Ship Health mechanic
 - Sprite Collisions 
