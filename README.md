@@ -1,9 +1,14 @@
-# **Inside The Void**
+# **Inside The Void** - ### **By Eleanor Craner & Simon Bahrani** 
 
-**By Eleanor Craner & Simon Bahrani** 
-- [Host GitHub Link](https://github.com/Junecran/MA1805-SpringFinalProject) 
-- [Website Link](https://junecran.github.io/MA1805-SpringFinalProject/) 
-- ['Inside The Void' Link](insideTheVoid/index.html) 
+
+### Links 
+ [Host GitHub](https://github.com/Junecran/MA1805-SpringFinalProject) 
+ [Website](https://junecran.github.io/MA1805-SpringFinalProject/) 
+ ['Inside The Void'](insideTheVoid/index.html) 
+ [Link to Art References](https://uk.pinterest.com/Blank9289/project-inspiration/2d-pixel-game-inspiration/)
+ [Eleanor Personal Text File](textFiles/EleanorCraner_PersonalContributions.txt)
+
+
 
 ### **Description**
 Step into the void with this experimental mini-game, where the vast emptiness becomes a powerful metaphor for isolation and mental health. You guide a delicate, tethered spacecraft that mirrors your own emotional state, while shadowy enemies drift by as the embodiment of intrusive thoughts.
@@ -35,18 +40,18 @@ Further development of the rope mechanics, player feedback, and gameplay variety
 
 ## Group Members & Main Responsibilities:
 
-**Eleanor Craner** - [Link to Text Eleanor file](textFiles/EleanorCraner_PersonalContributions.txt)
+1. **Eleanor Craner** - [Link to Text Eleanor file](textFiles/EleanorCraner_PersonalContributions.txt)
 - Pixel Art 
 - Menus/UI & Transitions
 - player & Enemies movement
 
-**Simon Bahrani** 
+2. **Simon Bahrani** 
 - Sounds
 - Ship Health mechanic
 - Sprite Collisions 
 
 
-## Concept Development & References
+## Concept Development 
 [**Link to Art References**](https://uk.pinterest.com/Blank9289/project-inspiration/2d-pixel-game-inspiration/)
 
 ### Early Concepts
