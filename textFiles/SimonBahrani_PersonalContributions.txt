@@ -1,0 +1,30 @@
+Simon Bahrani - 2606215
+
+
+Website Link - More information here - https://junecran.github.io/MA1805-SpringFinalProject/
+Host GitHub Link - https://github.com/Junecran/MA1805-SpringFinalProject
+Game link - https://junecran.github.io/MA1805-SpringFinalProject/insideTheVoid/index.html
+
+✔ What I Did
+Programmed the entire sound system, including background music, UI interaction sounds, and event‑triggered SFX for collisions and damage.
+
+Synced audio timing and volume levels with gameplay events to ensure consistent feedback.
+
+Built the spaceship health system, including damage logic.
+
+Connected the visual overlay effect to the ship’s health to reinforce damage feedback.
+
+Implemented collision detection between enemies, the player, and the spaceship.
+
+Ensured gameplay systems worked together smoothly without breaking transitions or game flow.
+
+✔ What I Could Improve
+Add more UI sound effects (hover, confirm, cancel, pause interactions) to make the interface feel more responsive.
+
+Expand the health system with additional feedback (screen shake, colour shifts, or warning tones).
+
+Improve collision accuracy by refining hitboxes or adding shape‑based detection.
+
+Introduce more varied sound cues for different enemy types or damage levels.
+
+Optimise audio handling to avoid overlapping or repeated triggers during intense gameplay moments.
