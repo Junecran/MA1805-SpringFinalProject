@@ -8,6 +8,7 @@
  - ['Inside The Void'](insideTheVoid/index.html) 
  - [Art References](https://uk.pinterest.com/Blank9289/project-inspiration/2d-pixel-game-inspiration/)
  - [Eleanor Personal Text File](textFiles/EleanorCraner_PersonalContributions.txt)
+ - [Simon Personal Text File](textFiles/SimonBahrani_PersonalContributions.txt)
 
 
 
