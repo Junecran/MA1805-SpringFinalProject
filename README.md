@@ -35,7 +35,7 @@ Further development of the rope mechanics, player feedback, and gameplay variety
 
 ## Group Members & Main Responsibilities:
 
-**Eleanor Craner** - [Link to Text Eleanor file](EleanorCraner_PersonalContributions.txt)
+**Eleanor Craner** - [Link to Text Eleanor file](textFiles/EleanorCraner_PersonalContributions.txt)
 - Pixel Art 
 - Menus/UI & Transitions
 - player & Enemies movement
