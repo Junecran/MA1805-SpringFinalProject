@@ -1,12 +1,13 @@
-# **Inside The Void** - ### **By Eleanor Craner & Simon Bahrani** 
+# **Inside The Void** 
+**By Eleanor Craner & Simon Bahrani** 
 
 
 ### Links 
- [Host GitHub](https://github.com/Junecran/MA1805-SpringFinalProject) 
- [Website](https://junecran.github.io/MA1805-SpringFinalProject/) 
- ['Inside The Void'](insideTheVoid/index.html) 
- [Link to Art References](https://uk.pinterest.com/Blank9289/project-inspiration/2d-pixel-game-inspiration/)
- [Eleanor Personal Text File](textFiles/EleanorCraner_PersonalContributions.txt)
+ - [Host GitHub](https://github.com/Junecran/MA1805-SpringFinalProject) 
+ - [Website](https://junecran.github.io/MA1805-SpringFinalProject/) 
+ - ['Inside The Void'](insideTheVoid/index.html) 
+ - [Link to Art References](https://uk.pinterest.com/Blank9289/project-inspiration/2d-pixel-game-inspiration/)
+ - [Eleanor Personal Text File](textFiles/EleanorCraner_PersonalContributions.txt)
 
 
 
@@ -40,7 +41,7 @@ Further development of the rope mechanics, player feedback, and gameplay variety
 
 ## Group Members & Main Responsibilities:
 
-1. **Eleanor Craner** - [Link to Text Eleanor file](textFiles/EleanorCraner_PersonalContributions.txt)
+1. **Eleanor Craner** - [Personal Text File](textFiles/EleanorCraner_PersonalContributions.txt)
 - Pixel Art 
 - Menus/UI & Transitions
 - player & Enemies movement
@@ -53,7 +54,6 @@ Further development of the rope mechanics, player feedback, and gameplay variety
 
 ## Concept Development 
 [**Link to Art References**](https://uk.pinterest.com/Blank9289/project-inspiration/2d-pixel-game-inspiration/)
-
 ### Early Concepts
 * **Noise Parkcore (Rain + Water Creature Platformer)**
 This game idea features loud noises that trigger rain. The player controls a water creature that jumps between puddles. If there’s no microphone input, the character makes sound by jumping into puddles.
