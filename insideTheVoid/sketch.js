@@ -64,7 +64,6 @@ let bgMusic;
 let enemyHitSound;
 let spaceshipDamageSound;
 let Volume = 0.2; 
-let uiHoverSound;
 
 
 // -- Preload Images -- // 
@@ -444,16 +443,7 @@ constructor(x, y, w, h, glowImg, action, baseImg = null) {
     mouseY < this.y + this.h / 2
   );
 
-  // Play sound only when hover starts
- if (nowHovered && !this.wasHovered) {
-  uiHoverSound.setVolume(Volume);
-  uiHoverSound.stop();
-  uiHoverSound.play();
-}
-  
 
-  this.ishovered = nowHovered;
-  this.wasHovered = nowHovered;
 }
 
 show() {
