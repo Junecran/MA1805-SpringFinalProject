@@ -1,0 +1,118 @@
+Eleanor Craner - 2607947
+
+Website Link - More information here - https://junecran.github.io/MA1805-SpringFinalProject/
+Host GitHub Link - https://github.com/Junecran/MA1805-SpringFinalProject
+Game link - https://junecran.github.io/MA1805-SpringFinalProject/insideTheVoid/index.html
+
+
+__________________________________________________
+             Achieved Personal Contributions
+__________________________________________________
+
+* Developed main menu, gameplay, instructions, and pause modes. Added smooth camera transitions between them.
+
+* Created interactive UI buttons (Start, Instructions, Exit, Back, Pause) for easy player navigation.
+
+* Added enemies with managed spawning and adjustable difficulty.
+
+* Programmed player movement and rendering, including spaceship visuals and a base for hitboxes.
+
+* Added tethered movement, limiting the player within a rope-style range.
+
+* Made a debug mode and tested repeatedly to refine gameplay and fix bugs.
+ 
+__________________________________________________
+                     Debrief 
+__________________________________________________
+  
+Focused on immersive experiences by adding smooth camera, lighting, and subtle animation to boost flow and engagement.
+* Improvement: The code needs cleaner organisation. I believe my goal of making sure the values were easy to find resulted in overcomplicating the global variables.
+
+Structured game states improved code organisation and display control.
+* Improvement: Modular design fell short; setting values manually improved control (e.g., button placement), but may limit screen adaptability.
+
+The use of pixel art combined with a cold, minimal visual style helps reinforce the game’s atmosphere and theme, making the experience feel more surreal and intentionally lonely.
+* More visuals or animation would help: different enemies could symbolise emotions, and player animation could react to ship damage.
+
+Enemy spawning enables scalable difficulty and controls pacing.
+* Difficulty now progresses statically. Dynamic scaling based on performance could add depth and fit the theme.
+
+__________________________________________________
+                  Research Notes
+__________________________________________________
+  
+   Game State System
+-----------------------
+  let gameState = "mainMenu";              // Created a variable that controls the entire game’s “mode”:    
+  if (gameState !== "mainMenu") return;   // Then in your functions you check it like this:
+
+Each part of the game runs only when its state is active (e.g., mainMenuState() runs in the menu), acting as a traffic controller. This prevents overlapping code and mirrors standard industry systems. 
+
+
+
+   Tethered Player (Rope / Constraint Physics System)
+--------------------------------------------------------
+Combination of lerp smoothing (soft movement), distance constraint (hard limit), procedural rope rendering (math-based animation)
+
+this.x = lerp(this.x, targetX, this.lerpAmount); // Smooth following - creates inertia-like motion instead of instant snapping.
+this.y = lerp(this.y, targetY, this.lerpAmount);
+
+if (d > this.maxDistance) { let angle = atan2(this.y - anchorY, this.x - anchorX); // Rope constraint
+this.x = anchorX + cos(angle) * this.maxDistance; this.y = anchorY + sin(angle) * this.maxDistance; } // It calculates the direction from the spaceship → player, and if too far, it pulls the player back onto the circle boundary.
+
+
+for (let i = 0; i <= segments; i++) { let t = i / segments; } // Splitting rope into segments
+let wave = sin(t * PI * 4 + frameCount * 0.05); // Wave motion and perpendicular offsets
+
+
+
+
+   Camera Scrolling System
+------------------------------
+cameraY, targetY, menuYPos, gameYPos, instructYPos  
+image(mainMenuImg, 0, 0, width, height, 0, cameraY, width, height);  
+
+Instead of designing separate screens, I developed a single vertical world. I chose this approach because it required less coding than implementing dynamic button movement, which prevents buttons from abruptly appearing or disappearing during transitions. This simplifies side-scrolling engines and camera systems in Unity.
+
+
+
+   Procedural Effects (Overlay System)
+-----------------------------------------
+Simon did the health system, but I added the visual effects after.
+
+let finalTarget = min(overlayTargetAlpha, healthBasedAlpha);
+overlayAlpha = lerp(overlayAlpha, finalTarget, 0.05);  // Combining multiple influences: Game events (target alpha), player health, smoothing over time
+
+
+let flicker = random(-flickerStrength, flickerStrength); // Randomness
+overlayAlpha = constrain(overlayAlpha + flicker, 0, 255); 
+
+
+
+  Enemy Spawning with Spatial Validation
+--------------------------------------------
+while (!validSpawn && attempts < 30) // Prevents enemies from spawning too close
+if (dist(newEnemy.x, newEnemy.y, e.x, e.y) < enemySpawnDistance) // Then checks distance
+
+Collision avoidance at spawn time and a simple form of spatial sampling. Also looks cleaner in gameplay.
+
+
+_________________________________________________
+                  References
+__________________________________________________
+
+
+* Calculates a number between two numbers at a specific increment. - https://p5js.org/reference/p5/lerp/
+* Curve vertex - https://p5js.org/reference/p5/curveVertex/
+* 2D collision detection - https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
+* Game loops - https://gameprogrammingpatterns.com/game-loop.html
+* Game states introduction - https://gameprogrammingpatterns.com/state.html
+* Calculates the angle formed by a point, the origin, and the positive x-axis. - https://p5js.org/reference/p5/atan2/
+* Rope physics - https://explosion-scratch.github.io/blog/rope-simulation/
+* Rope Length and gravity - https://stackoverflow.com/questions/54752383/how-to-make-a-ball-hang-from-a-rope
+* Rope Example - https://prancer.physics.louisville.edu/modules/rope/index.html
+* Mathematics of motion - https://nehe.gamedev.net/tutorial/rope_physics/17006/
+* A camera enables scrolling and viewing scenes larger than the canvas - https://boldideainc.github.io/p5.game/docs/classes/Camera.html
+* Re-maps a number from one range to another - https://p5js.org/reference/p5/map/
+* Sine wave animation - https://www.shader-learn.com/en/learn/math/sine-wave
+* Games use sine waves to animate objects like plants reacting to wind , extra learning - https://developer.nvidia.com/gpugems/gpugems3/part-iii-rendering/chapter-16-vegetation-procedural-animation-and-shading-crysis

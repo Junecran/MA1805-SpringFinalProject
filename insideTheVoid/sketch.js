@@ -29,6 +29,7 @@ let enemySpawnDistance = 80; // Prevents overlap
 let spaceship;
 let spaceshipHitBoxSize = 20;
 let spaceshipHealth = 10;
+let maxSpaceshipHealth = 10;
 let playerHitBoxSize = 30;
 let player;
 let lastSpawnFrame = 0;
@@ -36,6 +37,10 @@ let ropeConstrainLength = 120;
 let ropeSmoothness = 0.25;
 let looseRopeAmount = 1;
 let ropeWiggleAmount = 5;
+let overlayAlpha = 0;
+let overlayTargetAlpha = 0;
+let titleGlowAlpha = 0;
+let titleGlowTarget = 180;
 // Assets 
 let mainMenuImg;
 let selectedMainMenuImg;
@@ -48,51 +53,59 @@ let yesB;
 let yesBG;
 let noB;
 let noBG;
-let spaceshipImg;
+let spaceshipImgs = [];
 let enemyImg;
 let playerImg;
+let titleImg;
+let titleGlowImg;
+let overlayImg;
 // Audio
 let bgMusic;
 let enemyHitSound;
 let spaceshipDamageSound;
-let Volume = 0.3; 
+let Volume = 0.2; 
 let uiHoverSound;
 
 
 // -- Preload Images -- // 
 function preload(){
-// Backgrounds  
- mainMenuImg = loadImage("assets/Main_Menu.png");
- selectedMainMenuImg = loadImage("assets/Main_Menu_Selection.png");
- pauseMenuImg = loadImage("assets/Pause_Menu.png");
+// User & Backgrounds  
+ mainMenuImg = loadImage("assets/user/mainMenu.png");
+ selectedMainMenuImg = loadImage("assets/user/mainMenu_Selection.png");
+ pauseMenuImg = loadImage("assets/user/pauseMenu.png");
+ titleImg = loadImage("assets/user/mainMenu_Title.png");
+ titleGlowImg = loadImage("assets/user/mainMenu_TitleGlow.png");
+ // Game 
+ enemyImg = loadImage("assets/sprites/enemy.png");
+ playerImg = loadImage("assets/sprites/player.png");
+ spaceshipImgs = [
+  loadImage("assets/sprites/spaceship_NoDamage.png"),
+  loadImage("assets/sprites/spaceship_Stage2.png"),
+  loadImage("assets/sprites/spaceship_Stage3.png"),
+  loadImage("assets/sprites/spaceship_Stage4.png")];
 // Buttons 
- startBG = loadImage("assets/Start_Button_Glow.png");
- instructionBG = loadImage("assets/Instruct_Button_Glow.png");
- exitBG = loadImage("assets/Exit_Button_Glow.png");
- backBG = loadImage("assets/Back_Button_Glow.png");
- yesB = loadImage("assets/Yes_Button.png");
- yesBG = loadImage("assets/Yes_Button_Glow.png");
- noB = loadImage("assets/No_Button.png");
- noBG = loadImage("assets/No_Button_Glow.png");
-// Game 
- spaceshipImg = loadImage("assets/spaceship.png");
- enemyImg = loadImage("assets/Enemy.png");
- playerImg = loadImage("assets/player.png");
+ backBG = loadImage("assets/user/backButton_Glow.png"); 
+ exitBG = loadImage("assets/user/exitButton_Glow.png");
+ startBG = loadImage("assets/user/startButton_Glow.png");
+ overlayImg = loadImage("assets/user/gameGlow.png");
+ instructionBG = loadImage("assets/user/instructButton_Glow.png");
+ yesB = loadImage("assets/user/yesButton.png");
+ yesBG = loadImage("assets/user/yesButton_Glow.png");
+ noB = loadImage("assets/user/noButton.png");
+ noBG = loadImage("assets/user/noButton_Glow.png");
  //Audio
- bgMusic = loadSound("assets/backgroundaudio.mp3");
- enemyHitSound = loadSound("assets/enemycollision.mp3")
-spaceshipDamageSound = loadSound("assets/shipdamage.mp3");
-uiHoverSound = loadSound("assets/UIInteract.mp3")
+ bgMusic = loadSound("assets/audio/backgroundaudio.mp3");
+ enemyHitSound = loadSound("assets/audio/enemycollision.mp3");
+ spaceshipDamageSound = loadSound("assets/audio/shipdamage.mp3");
+ uiHoverSound = loadSound("assets/audio/UIInteract.mp3");
 }
-
 
 
 // -- Functions & Setups -- //
 // Essentials //
 function setup() {
   createCanvas(1280, 720);
-  noSmooth(); 
-
+  console.log(typeof loadSound);
   menuYPos = mainMenuImg.height / 2 - height / 2;
   instructYPos = 0; // Top of image
   gameYPos = mainMenuImg.height - height; // Bottom of image
@@ -101,19 +114,51 @@ function setup() {
 }
 
 function draw() {
-  if (gameState === "mainMenu") mainMenuState();
-  else if (gameState === "transition") menuTransitions();
-  else if (gameState === "instructions") InstructionsMenuState();
+  if (gameState === "mainMenu") {
+    mainMenuState();
+  } 
+  else if (gameState === "transition") {
+    menuTransitions();
+  } 
+  else if (gameState === "instructions") {
+    InstructionsMenuState();
+  } 
   else if (gameState === "game") {
-    if (!gameStarted)
+    if (!gameStarted) 
     startGame();
     updateGame();
-    
   }
 }
 
-
 //  Menus //
+function mainMenuState() {
+  imageMode(CORNER);
+  image(mainMenuImg, 0, 0, width, height, 0, cameraY, width, height);
+  updateTitleGlow();
+
+  push();
+  tint(255, titleGlowAlpha);
+  imageMode(CORNER);
+  image(titleGlowImg, 0, 0, width, height, 0, cameraY, width, height); 
+  pop();
+
+  imageMode(CORNER); // Title on top
+  image(titleImg, 0, 0, width, height, 0, cameraY, width, height);
+
+  if (gameState !== "mainMenu") return;
+  mainMenuButtons = [
+    new button(250, 624, 219, 88, startBG, "start"),
+    new button(640, 624, 219, 88, instructionBG, "instruct"),
+    new button(1030, 624, 219, 88, exitBG, "exit")
+  ];
+
+  for (let btn of mainMenuButtons) {
+    btn.update();
+    btn.show();
+    debugDraw(btn);
+  }
+}
+
 function InstructionsMenuState() {
   imageMode(CORNER);
   image(mainMenuImg, 0, 0, width, height, 0, cameraY, width, height);
@@ -122,40 +167,6 @@ function InstructionsMenuState() {
   backButton.update();
   backButton.show();
   debugDraw(backButton);
-}
-
-function mainMenuState() {
-  imageMode(CORNER);
-  image(mainMenuImg, 0, 0, width, height, 0, cameraY, width, height);
-  if (gameState !== "mainMenu") return;
-
-  mainMenuButtons = [ // Main menu buttons position --------------> 
-  new button(250, 624, 219, 88, startBG, "start"),
-  new button(640, 624, 219, 88, instructionBG, "instruct"),
-  new button(1030, 624, 219, 88, exitBG, "exit")
-  ];
-
-  for (let btn of mainMenuButtons) {
-   btn.update();
-   btn.show();
-   debugDraw(btn);
-  }
-}
-
-function pauseMenuState() {
-imageMode(CENTER);
-image(pauseMenuImg, width / 2, height / 2, 442, 200); // Pause menu image position ------------->
-
-  // Create buttons
-  pauseYesButton = new button(width / 2 - 80, height / 2 + 40, pausebuttonHeight, pausebuttonWidth, yesBG, "yes", yesB); 
-  pauseYesButton.update();
-  pauseYesButton.show();
-  debugDraw(pauseYesButton);
-
-  pauseNoButton = new button(width / 2 + 80, height / 2 + 40, pausebuttonHeight, pausebuttonWidth, noBG, "no", noB );
-  pauseNoButton.update();
-  pauseNoButton.show();
-  debugDraw(pauseNoButton);
 }
 
 function menuTransitions() {
@@ -174,15 +185,27 @@ function menuTransitions() {
   }
 }
 
+function pauseMenuState() {
+  imageMode(CENTER);
+  image(pauseMenuImg, width / 2, height / 2, 442, 200);
+
+  if (!pauseYesButton || !pauseNoButton) {
+    pauseYesButton = new button(width / 2 - 80, height / 2 + 40, pausebuttonHeight, pausebuttonWidth, yesBG, "yes", yesB);
+    pauseNoButton = new button(width / 2 + 80, height / 2 + 40, pausebuttonHeight, pausebuttonWidth, noBG, "no", noB);
+  }
+
+  pauseYesButton.update();
+  pauseYesButton.show();
+
+  pauseNoButton.update();
+  pauseNoButton.show();
+}
 
 // Game Logic //
 function startGame() {
   gameStarted = true;
-  if (!bgMusic.isPlaying()){
-    bgMusic.setLoop(true);
-    bgMusic.setVolume(Volume);
-    bgMusic.play();
-  }
+  overlayAlpha = 0;
+  overlayTargetAlpha = 120;
   lastSpawnFrame = frameCount; 
   spaceship = new playerSpaceship(width / 2, height / 2);
   player = new tetheredPlayer(width / 2, height / 2);
@@ -198,11 +221,6 @@ function updateGame() {
 background(0);
 imageMode(CORNER);
 image(selectedMainMenuImg, 0, 0, 1280, 720);
-
-fill(255);
-textSize(48);
-textAlign(LEFT, TOP);
-text("Health: " + spaceshipHealth, 20, 20);
 
   if (isPaused) {
     pauseMenuState();
@@ -251,34 +269,85 @@ text("Health: " + spaceshipHealth, 20, 20);
       spaceshipDamageSound.play();
       enemies.splice(i, 1); // Remove enemy on ship collision
       spaceshipHealth--; 
-      if (spaceshipHealth <= 0) {
-    gameStarted = false;
-    gameState = "transition";
-    targetY = menuYPos;
+   if (spaceshipHealth <= 0) {
+   overlayTargetAlpha = 0; // Fade out
+
+    setTimeout(() => {
+     gameStarted = false;
+     gameState = "transition";
+     targetY = menuYPos;
+     }, 500); // Delay so fade can happen
     }
+   }
   }
-  }
+  updateOverlay();
+  drawOverlay();
 }
 
-// Enemy //
+// Enemy & Health //
 function spawnEnemy() {
   let newEnemy;
   let validSpawn = false; 
   let attempts = 0;
   
-  while (!validSpawn && attempts < 20) { // Find a valid spawn position
+  while (!validSpawn && attempts < 30) { 
     newEnemy = new enemy();
     validSpawn = true;
 
     for (let e of enemies) {
-      if (dist(newEnemy.x, newEnemy.y, e.x, e.y) < enemySpawnDistance) { // If too close to another enemy, mark as not vaild
+      if (dist(newEnemy.x, newEnemy.y, e.x, e.y) < enemySpawnDistance) {
         validSpawn = false;
         break;
       }
     }
     attempts++;
   }
-  enemies.push(newEnemy);
+
+  if (validSpawn) { // Only add enemy if a valid position was found
+    enemies.push(newEnemy);
+  }
+}
+
+function getDamageStage(health) {
+  if (health >= 8) return 0;
+  else if (health >= 5) return 1;
+  else if (health >= 1) return 2;
+  else return 3;
+}
+
+// Effects //
+function updateOverlay() {
+  let healthRatio = spaceshipHealth / maxSpaceshipHealth;  // Health ratio (0 → 1)
+  let healthBasedAlpha = map(healthRatio, 0, 1, 10, 120); // Map health to brightness (burning out effect)
+  let finalTarget = min(overlayTargetAlpha, healthBasedAlpha);   // Blend with target (for fade in/out still working)
+  overlayAlpha = lerp(overlayAlpha, finalTarget, 0.05); // Smooth fade
+
+  // Flicker (stronger when dying = unstable light)
+  let flickerStrength = map(healthRatio, 0, 1, 2, 3);
+  if (overlayAlpha > 5) {
+    let flicker = random(-flickerStrength, flickerStrength);
+    overlayAlpha = constrain(overlayAlpha + flicker, 0, 255);
+  }
+}
+
+function drawOverlay() {
+  if (!overlayImg || !spaceship) return;
+
+  push();
+  tint(255, overlayAlpha);
+  imageMode(CORNER);
+  // Calculate vertical offset from ship movement & offset
+  let offsetY = spaceship.y - spaceship.baseY;
+  image(overlayImg, 0, offsetY * 0.5, width, height);
+  pop();
+}
+
+function updateTitleGlow() {
+  titleGlowAlpha = lerp(titleGlowAlpha, titleGlowTarget, 0.05); // Smooth fade toward target
+
+  // Flicker effect
+  let flicker = random(-10, 5);
+  titleGlowAlpha = constrain(titleGlowAlpha + flicker, 0, 180);
 }
 
 // Debug Mode //
@@ -290,9 +359,14 @@ function debugDraw(obj) {
 }
 
 
-
 // -- Inputs -- //
 function mousePressed() { 
+    
+    if (!bgMusic.isPlaying()){
+    bgMusic.setLoop(true);
+    bgMusic.setVolume(Volume);
+    bgMusic.play();
+    }
 if (gameState === "game" && isPaused) {
 
  if (pauseYesButton.ishovered) {
@@ -309,7 +383,7 @@ if (gameState === "game" && isPaused) {
 }
 
   if (gameState === "instructions") {
-    if (backButton.ishovered) {
+    if (backButton && backButton.ishovered) {
       gameState = "transition";
       targetY = menuYPos; 
     }
@@ -340,12 +414,6 @@ if (gameState === "game" && isPaused) {
 function keyPressed() {
   if (gameState === "game" && (key === 'e' || key === 'E')) {
     isPaused = !isPaused;
-
-    if (isPaused) {
-      bgMusic.pause();
-    } else {
-      bgMusic.Play();
-    }
   }
 }
 
@@ -429,9 +497,14 @@ class playerSpaceship {
   }
 
   show() {
-    imageMode(CENTER);
-    image(spaceshipImg, this.x, this.y, 80, 150);
-}
+   imageMode(CENTER);
+
+  let stage = getDamageStage(spaceshipHealth);
+  let img = spaceshipImgs[stage];
+   if (img) {
+    image(img, this.x, this.y, 80, 150);
+   }
+ }
 
   getHitbox() { 
     return {
@@ -448,6 +521,11 @@ debug() {
    stroke(255, 0, 0);
    rectMode(CENTER);
    rect(hb.x, hb.y, hb.size, hb.size);
+
+   fill(255);
+   textSize(48);
+   textAlign(LEFT, TOP);
+   text("Health: " + spaceshipHealth, 20, 20);
   }
 }
 
