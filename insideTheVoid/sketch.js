@@ -3,7 +3,7 @@
 // Default Game State 
 let gameState = "mainMenu"; // Can change for debug (mainMenu,game,transition,instructions)
 let gameStarted = false;
-let debugMode = false;
+let debugMode = true;
 // Inputs 
 let cameraY = 0;
 let targetY = 0;
@@ -11,11 +11,12 @@ let menuTransitionSpeed = 0.04;
 let menuYPos;
 let instructYPos;
 let gameYPos;
+// Buttons 
 let mainMenuButtons = [];
 let backButton;
-let isPaused = false;
 let pauseYesButton;
 let pauseNoButton;
+let isPaused = false;
 let pausebuttonHeight = 120;
 let pausebuttonWidth = 50;
 // Enemies 
@@ -109,6 +110,12 @@ function setup() {
   gameYPos = mainMenuImg.height - height; // Bottom of image
   cameraY = menuYPos;
   targetY = menuYPos;
+
+   mainMenuButtons = [
+    new button(250, 624, 219, 88, startBG, "start"),
+    new button(640, 624, 219, 88, instructionBG, "instruct"),
+    new button(1030, 624, 219, 88, exitBG, "exit")
+  ];
 }
 
 function draw() {
@@ -132,23 +139,15 @@ function draw() {
 function mainMenuState() {
   imageMode(CORNER);
   image(mainMenuImg, 0, 0, width, height, 0, cameraY, width, height);
+
   updateTitleGlow();
 
   push();
   tint(255, titleGlowAlpha);
-  imageMode(CORNER);
-  image(titleGlowImg, 0, 0, width, height, 0, cameraY, width, height); 
+  image(titleGlowImg, 0, 0, width, height, 0, cameraY, width, height);
   pop();
 
-  imageMode(CORNER); // Title on top
   image(titleImg, 0, 0, width, height, 0, cameraY, width, height);
-
-  if (gameState !== "mainMenu") return;
-  mainMenuButtons = [
-    new button(250, 624, 219, 88, startBG, "start"),
-    new button(640, 624, 219, 88, instructionBG, "instruct"),
-    new button(1030, 624, 219, 88, exitBG, "exit")
-  ];
 
   for (let btn of mainMenuButtons) {
     btn.update();
@@ -159,9 +158,12 @@ function mainMenuState() {
 
 function InstructionsMenuState() {
   imageMode(CORNER);
+  cameraY = instructYPos;
   image(mainMenuImg, 0, 0, width, height, 0, cameraY, width, height);
 
-  backButton = new button(1163, 65, 159, 66, backBG, "back");
+  if (!backButton) {
+    backButton = new button(1163, 65, 159, 66, backBG, "back");
+  }
   backButton.update();
   backButton.show();
   debugDraw(backButton);
@@ -172,16 +174,15 @@ function menuTransitions() {
   image(mainMenuImg, 0, 0, width, height, 0, cameraY, width, height);
 
   cameraY = lerp(cameraY, targetY, menuTransitionSpeed);
+
   if (abs(cameraY - targetY) < 1) {
-  if (targetY === gameYPos) {
-  gameState = "game";
-    } else if (targetY === instructYPos) {
-      gameState = "instructions";
-    } else {
-      gameState = "mainMenu";
-    }
+    if (targetY === gameYPos) gameState = "game";
+    else if (targetY === instructYPos) gameState = "instructions";
+    else gameState = "mainMenu";
   }
 }
+
+
 
 function pauseMenuState() {
   imageMode(CENTER);
@@ -358,32 +359,34 @@ function debugDraw(obj) {
 
 
 // -- Inputs -- //
-function mousePressed() { 
-    
-    if (!bgMusic.isPlaying()){
+function mousePressed() {
+
+  if (!bgMusic.isPlaying()){
     bgMusic.setLoop(true);
     bgMusic.setVolume(Volume);
     bgMusic.play();
-    }
-if (gameState === "game" && isPaused) {
-
- if (pauseYesButton.ishovered) {
-  isPaused = false;
-  gameStarted = false;
-  gameState = "transition";   
-  targetY = menuYPos;
- } 
-
- if (pauseNoButton.ishovered) {
-  isPaused = false;
   }
-  return;
-}
+
+  if (gameState === "game" && isPaused) {
+
+    if (pauseYesButton && pauseYesButton.ishovered) {
+      isPaused = false;
+      gameStarted = false;
+      gameState = "transition";
+      targetY = menuYPos;
+    }
+
+    if (pauseNoButton && pauseNoButton.ishovered) {
+      isPaused = false;
+    }
+
+    return;
+  }
 
   if (gameState === "instructions") {
     if (backButton && backButton.ishovered) {
       gameState = "transition";
-      targetY = menuYPos; 
+      targetY = menuYPos;
     }
     return;
   }
@@ -403,9 +406,9 @@ if (gameState === "game" && isPaused) {
       targetY = instructYPos;
     }
 
-  if (btn.action === "exit") {
-  window.location.href = "https://junecran.github.io/MA1805-SpringFinalProject/";
-   }
+    if (btn.action === "exit") {
+      window.location.href = "https://junecran.github.io/MA1805-SpringFinalProject/";
+    }
   }
 }
 
