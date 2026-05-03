@@ -65,6 +65,7 @@ let bgMusic;
 let enemyHitSound;
 let spaceshipDamageSound;
 let Volume = 0.2; 
+let uiHoverSound;
 
 
 // -- Preload Images -- // 
@@ -152,7 +153,6 @@ function mainMenuState() {
   for (let btn of mainMenuButtons) {
     btn.update();
     btn.show();
-    debugDraw(btn);
   }
 }
 
@@ -165,7 +165,6 @@ function InstructionsMenuState() {
   }
   backButton.update();
   backButton.show();
-  debugDraw(backButton);
 }
 
 function menuTransitions() {
@@ -194,11 +193,9 @@ function pauseMenuState() {
 
   pauseYesButton.update();
   pauseYesButton.show();
-  debugDraw(pauseYesButton);
 
   pauseNoButton.update();
   pauseNoButton.show();
-  debugDraw(pauseNoButton); 
 }
 
 // Game Logic //
@@ -439,29 +436,32 @@ constructor(x, y, w, h, glowImg, action, baseImg = null) {
 
 // Mouse hovering interaction
   update() {
-  this.ishovered = (
+ let nowHovered = (
     mouseX > this.x - this.w / 2 &&
     mouseX < this.x + this.w / 2 &&
     mouseY > this.y - this.h / 2 &&
     mouseY < this.y + this.h / 2
   );
 
-
+  // Play sound only when hover starts
+ if (nowHovered && !this.wasHovered) {
+  uiHoverSound.setVolume(Volume);
+  uiHoverSound.stop();
+  uiHoverSound.play();
+}
+  this.ishovered = nowHovered;
+  this.wasHovered = nowHovered;
 }
 
-show() {
+sshow() {
   imageMode(CENTER);
 
   if (this.baseImg) {
-    // Pause menu style (base + hover glow)
     image(this.baseImg, this.x, this.y, this.w, this.h);
-
     if (this.ishovered) {
       image(this.glowImg, this.x, this.y, this.w, this.h);
     }
-
   } else {
-    // Old behavior (main menu)
     if (this.ishovered) {
       image(this.glowImg, this.x, this.y, this.w, this.h);
     }
@@ -476,6 +476,7 @@ show() {
     rect(this.x, this.y, this.w, this.h);
   }
 }
+
 
 // - Spaceship - //
 class playerSpaceship {
