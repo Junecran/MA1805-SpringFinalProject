@@ -11,12 +11,11 @@ let menuTransitionSpeed = 0.04;
 let menuYPos;
 let instructYPos;
 let gameYPos;
-// Buttons 
 let mainMenuButtons = [];
 let backButton;
+let isPaused = false;
 let pauseYesButton;
 let pauseNoButton;
-let isPaused = false;
 let pausebuttonHeight = 120;
 let pausebuttonWidth = 50;
 // Enemies 
@@ -106,17 +105,12 @@ function preload(){
 // Essentials //
 function setup() {
   createCanvas(1280, 720);
+  console.log(typeof loadSound);
   menuYPos = mainMenuImg.height / 2 - height / 2;
   instructYPos = 0; // Top of image
   gameYPos = mainMenuImg.height - height; // Bottom of image
   cameraY = menuYPos;
   targetY = menuYPos;
-
-   mainMenuButtons = [
-    new button(250, 624, 219, 88, startBG, "start"),
-    new button(640, 624, 219, 88, instructionBG, "instruct"),
-    new button(1030, 624, 219, 88, exitBG, "exit")
-  ];
 }
 
 function draw() {
@@ -140,19 +134,28 @@ function draw() {
 function mainMenuState() {
   imageMode(CORNER);
   image(mainMenuImg, 0, 0, width, height, 0, cameraY, width, height);
-
   updateTitleGlow();
 
   push();
   tint(255, titleGlowAlpha);
-  image(titleGlowImg, 0, 0, width, height, 0, cameraY, width, height);
+  imageMode(CORNER);
+  image(titleGlowImg, 0, 0, width, height, 0, cameraY, width, height); 
   pop();
 
+  imageMode(CORNER); // Title on top
   image(titleImg, 0, 0, width, height, 0, cameraY, width, height);
+
+  if (gameState !== "mainMenu") return;
+  mainMenuButtons = [
+    new button(250, 624, 219, 88, startBG, "start"),
+    new button(640, 624, 219, 88, instructionBG, "instruct"),
+    new button(1030, 624, 219, 88, exitBG, "exit")
+  ];
 
   for (let btn of mainMenuButtons) {
     btn.update();
     btn.show();
+    debugDraw(btn);
   }
 }
 
@@ -160,11 +163,10 @@ function InstructionsMenuState() {
   imageMode(CORNER);
   image(mainMenuImg, 0, 0, width, height, 0, cameraY, width, height);
 
-  if (!backButton) {
-    backButton = new button(1163, 65, 159, 66, backBG, "back");
-  }
+  backButton = new button(1163, 65, 159, 66, backBG, "back"); // Instructions menu back button position ------------->
   backButton.update();
   backButton.show();
+  debugDraw(backButton);
 }
 
 function menuTransitions() {
@@ -172,15 +174,16 @@ function menuTransitions() {
   image(mainMenuImg, 0, 0, width, height, 0, cameraY, width, height);
 
   cameraY = lerp(cameraY, targetY, menuTransitionSpeed);
-
   if (abs(cameraY - targetY) < 1) {
-    if (targetY === gameYPos) gameState = "game";
-    else if (targetY === instructYPos) gameState = "instructions";
-    else gameState = "mainMenu";
+  if (targetY === gameYPos) {
+  gameState = "game";
+    } else if (targetY === instructYPos) {
+      gameState = "instructions";
+    } else {
+      gameState = "mainMenu";
+    }
   }
 }
-
-
 
 function pauseMenuState() {
   imageMode(CENTER);
@@ -357,34 +360,32 @@ function debugDraw(obj) {
 
 
 // -- Inputs -- //
-function mousePressed() {
-
-  if (!bgMusic.isPlaying()){
+function mousePressed() { 
+    
+    if (!bgMusic.isPlaying()){
     bgMusic.setLoop(true);
     bgMusic.setVolume(Volume);
     bgMusic.play();
-  }
-
-  if (gameState === "game" && isPaused) {
-
-    if (pauseYesButton && pauseYesButton.ishovered) {
-      isPaused = false;
-      gameStarted = false;
-      gameState = "transition";
-      targetY = menuYPos;
     }
+if (gameState === "game" && isPaused) {
 
-    if (pauseNoButton && pauseNoButton.ishovered) {
-      isPaused = false;
-    }
+ if (pauseYesButton.ishovered) {
+  isPaused = false;
+  gameStarted = false;
+  gameState = "transition";   
+  targetY = menuYPos;
+ } 
 
-    return;
+ if (pauseNoButton.ishovered) {
+  isPaused = false;
   }
+  return;
+}
 
   if (gameState === "instructions") {
     if (backButton && backButton.ishovered) {
       gameState = "transition";
-      targetY = menuYPos;
+      targetY = menuYPos; 
     }
     return;
   }
@@ -404,9 +405,9 @@ function mousePressed() {
       targetY = instructYPos;
     }
 
-    if (btn.action === "exit") {
-      window.location.href = "https://junecran.github.io/MA1805-SpringFinalProject/";
-    }
+  if (btn.action === "exit") {
+  window.location.href = "https://junecran.github.io/MA1805-SpringFinalProject/";
+   }
   }
 }
 
@@ -436,32 +437,27 @@ constructor(x, y, w, h, glowImg, action, baseImg = null) {
 
 // Mouse hovering interaction
   update() {
- let nowHovered = (
-    mouseX > this.x - this.w / 2 &&
-    mouseX < this.x + this.w / 2 &&
-    mouseY > this.y - this.h / 2 &&
-    mouseY < this.y + this.h / 2
-  );
+    this.ishovered = (
+      mouseX > this.x - this.w / 2 &&
+      mouseX < this.x + this.w / 2 &&
+      mouseY > this.y - this.h / 2 &&
+      mouseY < this.y + this.h / 2
+    );
+  }
 
-  // Play sound only when hover starts
- if (nowHovered && !this.wasHovered) {
-  uiHoverSound.setVolume(Volume);
-  uiHoverSound.stop();
-  uiHoverSound.play();
-}
-  this.ishovered = nowHovered;
-  this.wasHovered = nowHovered;
-}
-
-sshow() {
+show() {
   imageMode(CENTER);
 
   if (this.baseImg) {
+    // Pause menu style (base + hover glow)
     image(this.baseImg, this.x, this.y, this.w, this.h);
+
     if (this.ishovered) {
       image(this.glowImg, this.x, this.y, this.w, this.h);
     }
+
   } else {
+    // Old behavior (main menu)
     if (this.ishovered) {
       image(this.glowImg, this.x, this.y, this.w, this.h);
     }
@@ -476,7 +472,6 @@ sshow() {
     rect(this.x, this.y, this.w, this.h);
   }
 }
-
 
 // - Spaceship - //
 class playerSpaceship {
