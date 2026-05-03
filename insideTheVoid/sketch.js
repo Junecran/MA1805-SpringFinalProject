@@ -437,13 +437,24 @@ constructor(x, y, w, h, glowImg, action, baseImg = null) {
 
 // Mouse hovering interaction
   update() {
-    this.ishovered = (
-      mouseX > this.x - this.w / 2 &&
-      mouseX < this.x + this.w / 2 &&
-      mouseY > this.y - this.h / 2 &&
-      mouseY < this.y + this.h / 2
-    );
-  }
+  let nowHovered = (
+    mouseX > this.x - this.w / 2 &&
+    mouseX < this.x + this.w / 2 &&
+    mouseY > this.y - this.h / 2 &&
+    mouseY < this.y + this.h / 2
+  );
+
+  // Play sound only when hover starts
+ if (nowHovered && !this.wasHovered) {
+  uiHoverSound.setVolume(Volume);
+  uiHoverSound.stop();
+  uiHoverSound.play();
+}
+  
+
+  this.ishovered = nowHovered;
+  this.wasHovered = nowHovered;
+}
 
 show() {
   imageMode(CENTER);
