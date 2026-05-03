@@ -3,7 +3,7 @@
 // Default Game State 
 let gameState = "mainMenu"; // Can change for debug (mainMenu,game,transition,instructions)
 let gameStarted = false;
-let debugMode = true;
+let debugMode = false;
 // Inputs 
 let cameraY = 0;
 let targetY = 0;
