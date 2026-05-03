@@ -436,7 +436,7 @@ constructor(x, y, w, h, glowImg, action, baseImg = null) {
 
 // Mouse hovering interaction
   update() {
-  let nowHovered = (
+  this.ishovered = (
     mouseX > this.x - this.w / 2 &&
     mouseX < this.x + this.w / 2 &&
     mouseY > this.y - this.h / 2 &&
