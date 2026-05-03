@@ -161,6 +161,7 @@ function InstructionsMenuState() {
   imageMode(CORNER);
   image(mainMenuImg, 0, 0, width, height, 0, cameraY, width, height);
 
+  backButton = new button(1163, 65, 159, 66, backBG, "back");
   backButton.update();
   backButton.show();
   debugDraw(backButton);
