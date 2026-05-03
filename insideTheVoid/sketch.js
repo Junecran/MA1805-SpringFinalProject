@@ -104,7 +104,6 @@ function preload(){
 // Essentials //
 function setup() {
   createCanvas(1280, 720);
-  console.log(typeof loadSound);
   menuYPos = mainMenuImg.height / 2 - height / 2;
   instructYPos = 0; // Top of image
   gameYPos = mainMenuImg.height - height; // Bottom of image
@@ -162,7 +161,6 @@ function InstructionsMenuState() {
   imageMode(CORNER);
   image(mainMenuImg, 0, 0, width, height, 0, cameraY, width, height);
 
-  backButton = new button(1163, 65, 159, 66, backBG, "back"); // Instructions menu back button position ------------->
   backButton.update();
   backButton.show();
   debugDraw(backButton);
