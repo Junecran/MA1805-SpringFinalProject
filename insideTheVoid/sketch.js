@@ -158,7 +158,6 @@ function mainMenuState() {
 
 function InstructionsMenuState() {
   imageMode(CORNER);
-  cameraY = instructYPos;
   image(mainMenuImg, 0, 0, width, height, 0, cameraY, width, height);
 
   if (!backButton) {
@@ -195,9 +194,11 @@ function pauseMenuState() {
 
   pauseYesButton.update();
   pauseYesButton.show();
+  debugDraw(pauseYesButton);
 
   pauseNoButton.update();
   pauseNoButton.show();
+  debugDraw(pauseNoButton); 
 }
 
 // Game Logic //
